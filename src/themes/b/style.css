@@ -2,6 +2,7 @@
    Imperial Blue (#0000cd, from imperial.ac.uk's stylesheet) is used ONLY in the top header bar.
    Everything else is warm off-white with a deep teal accent. The hero is a split banner:
    a horizontal fade from light (text) into the photo's own studio grey (photo). */
+@import '@fontsource/ibm-plex-sans/300.css';
 @import '@fontsource/ibm-plex-sans/400.css';
 @import '@fontsource/ibm-plex-sans/400-italic.css';
 @import '@fontsource/ibm-plex-sans/500.css';
@@ -66,7 +67,7 @@
 .label { font-size: 0.72rem; font-weight: 500; border-top: 0; padding-top: 0; color: var(--accent); }
 .chip { font-size: 0.72rem; letter-spacing: 0.02em; background: var(--card); }
 .page-title { font-weight: 600; letter-spacing: -0.025em; }
-.name { font-size: clamp(2.5rem, 5.5vw, 3.4rem); font-weight: 600; letter-spacing: -0.03em; }
+.name { font-size: clamp(2.5rem, 5.5vw, 3.4rem); font-weight: 300; letter-spacing: -0.02em; }
 .statement { font-size: 1.3rem; font-weight: 400; letter-spacing: -0.01em; line-height: 1.45; }
 .paper-title, .feature-title, .tool-card h2 { font-weight: 600; letter-spacing: -0.01em; }
 .paper-title { font-size: 1.125rem; }
@@ -77,7 +78,11 @@
 
 /* Top bar: the one place Imperial Blue appears */
 .site-header { background: var(--imperial-blue); border-bottom: 0; }
-.site-header .site-name, .site-header .site-name:hover { color: #fff; }
+.site-header .site-name, .site-header .site-name:hover { color: #fff; font-weight: 500; }
+.site-header .wrap { align-items: center; }
+.org-logo { display: block; padding-left: 1rem; border-left: 1px solid rgb(255 255 255 / 0.35); }
+.org-logo img { height: 1.9rem; width: auto; }
+@media (max-width: 34rem) { .org-logo img { height: 1.6rem; } .site-header .wrap { row-gap: 0.75rem; } }
 .is-home .site-name { visibility: visible; }
 .site-header nav a { color: rgb(255 255 255 / 0.8); }
 .site-header nav a:hover { color: #fff; }

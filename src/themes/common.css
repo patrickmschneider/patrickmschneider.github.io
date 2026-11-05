@@ -55,6 +55,8 @@ img { max-width: 100%; height: auto; display: block; }
 /* Header */
 .site-header { border-bottom: 1px solid var(--rule); }
 .site-header .wrap { max-width: var(--wide); display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.5rem 2rem; padding-block: 1.1rem; }
+.brand { display: flex; align-items: center; gap: 1rem; }
+.org-logo { display: none; }
 .site-name { font-family: var(--font-display); font-weight: 600; font-size: 1.125rem; color: var(--text); text-decoration: none; letter-spacing: -0.005em; }
 .site-name:hover { color: var(--text); }
 .is-home .site-name { visibility: hidden; }

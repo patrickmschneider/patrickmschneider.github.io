@@ -48,7 +48,14 @@ const isCurrent = (href: string) => path.startsWith(href);
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
-        <a class="site-name" href={home}>{profile.name}</a>
+        <div class="brand">
+          <a class="site-name" href={home}>{profile.name}</a>
+          {profile.affiliation_url && (
+            <a class="org-logo" href={profile.affiliation_url} aria-label={profile.affiliation}>
+              <img src="/images/imperial-business-school-white.svg" alt={profile.affiliation} width="315" height="80" />
+            </a>
+          )}
+        </div>
         <nav aria-label="Main">
           {nav.map((n) => (
             <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
