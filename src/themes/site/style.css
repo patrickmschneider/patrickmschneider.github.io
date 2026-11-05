@@ -41,7 +41,9 @@
   --measure: 46rem;
   --wide: 70rem;
   --radius: 4px;
-  --photo-w: 29rem;
+  --photo-w: min(36rem, 46vw);
+  --photo-top: 1.5rem;   /* gap between the blue bar and the top of the photo */
+  --eye-line: 0.39;      /* eyes sit at 39% of the photo's height */
   --tile: #f1efea;
 }
 
@@ -99,8 +101,10 @@
 .btn { border-radius: 999px; padding: 0.55rem 1.25rem; font-size: 0.9375rem; }
 .more { font-size: 0.9375rem; margin-top: 2.25rem; }
 .more a { color: var(--text-soft); }
-.statement.tools-line { margin-top: 0.9rem; }
-.tools-line a { color: var(--text); text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
+.statement.tools-line { margin-top: 0.75rem; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); }
+.tools-line a { color: inherit; }
+.tools-line a { text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
+.tools-line a:hover { color: var(--text); }
 
 /* Top bar: the one place Imperial Blue appears. Deliberately NOT sticky: Safari tints its own
    toolbar to match anything pinned to the top of the page. */
@@ -125,22 +129,29 @@ main { padding-top: 0; }
   background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 50%, var(--band-photo) 80%, var(--band-photo) 100%);
   overflow: hidden;
 }
-.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 4rem; align-items: end; }
-.band .intro-text { padding-block: 6rem 5.5rem; max-width: 36rem; }
+.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 2.5rem; align-items: end; }
+/* The name is placed level with the eyes in the photo: photo top + 39% of its height,
+   minus half the name's cap height. The text then runs down to roughly where the chest ends. */
+.band .intro-text {
+  align-self: start;
+  padding-top: calc(var(--photo-top) + var(--photo-w) * var(--eye-line) - 0.62 * clamp(2.5rem, 5.5vw, 3.4rem));
+  padding-bottom: 1.25rem;
+  max-width: 36rem;
+}
 .band-photo {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  margin-top: 2.5rem;
+  margin-top: var(--photo-top);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
   mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
   mask-composite: intersect;
 }
 
-.band .tagline { color: var(--muted); margin-bottom: 2rem; }
-.band .statement { margin-bottom: 0.75rem; }
+.band .tagline { color: var(--muted); margin-bottom: 1.5rem; }
+.band .statement { margin-bottom: 0.75rem; font-size: 1.125rem; line-height: 1.55; }
 .band .bio { color: var(--muted); font-size: 0.9375rem; }
-.band .actions { margin-top: 2.25rem; }
+.band .actions { margin-top: 1.75rem; }
 
 .block { margin-top: 6rem; }
 .band + .block { margin-top: 5rem; }
@@ -148,8 +159,8 @@ main { padding-top: 0; }
 .news { max-width: 46rem; }
 body:not(.is-home) main { padding-top: 3.5rem; }
 
-/* Narrow screens: photo on top, fading down into the band */
-@media (max-width: 52rem) {
+/* Narrower screens: photo on top, fading down into the band */
+@media (max-width: 64rem) {
   .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 10rem, var(--band-light) 19rem); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
@@ -157,7 +168,7 @@ body:not(.is-home) main { padding-top: 3.5rem; }
     -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
   }
-  .band .intro-text { padding-block: 2rem 3rem; }
+  .band .intro-text { padding-top: 2rem; padding-bottom: 3rem; }
   .statement { font-size: 1.125rem; }
   .block { margin-top: 4rem; }
   .band + .block { margin-top: 3.5rem; }
