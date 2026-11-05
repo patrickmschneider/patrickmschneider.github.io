@@ -41,7 +41,7 @@
   --measure: 46rem;
   --wide: 70rem;
   --radius: 4px;
-  --photo-w: 26rem;
+  --photo-w: 29rem;
   --tile: #f1efea;
 }
 
@@ -150,7 +150,7 @@ body:not(.is-home) main { padding-top: 3.5rem; }
 
 /* Narrow screens: photo on top, fading down into the band */
 @media (max-width: 52rem) {
-  .band { --photo-w: 15rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 10rem, var(--band-light) 19rem); }
+  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 10rem, var(--band-light) 19rem); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
     order: -1; width: var(--photo-w); justify-self: center; margin-top: 1rem;
