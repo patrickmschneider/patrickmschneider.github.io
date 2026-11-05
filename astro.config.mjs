@@ -14,8 +14,8 @@ export default defineConfig({
   trailingSlash: 'ignore',
   vite: {
     define: { 'import.meta.env.THEME': JSON.stringify(theme) },
-    // `@theme/…` points at the folder for the design being built (src/themes/live for the live site).
-    resolve: { alias: { '@theme': fileURLToPath(new URL(`./src/themes/${theme || 'live'}`, import.meta.url)) } },
+    // `@theme/…` points at the folder for the design being built (src/themes/site for the live site).
+    resolve: { alias: { '@theme': fileURLToPath(new URL(`./src/themes/${theme || 'site'}`, import.meta.url)) } },
   },
 
   // Keep old Google Sites URLs working (live site only).

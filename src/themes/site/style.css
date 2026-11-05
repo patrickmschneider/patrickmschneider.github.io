@@ -1,7 +1,7 @@
-/* Direction B, "Figure-led": all sans (IBM Plex Sans + Plex Mono for labels).
-   Imperial Blue (#0000cd, from imperial.ac.uk's stylesheet) is used ONLY in the top header bar.
-   Everything else is warm off-white with a deep teal accent. The hero is a split banner:
-   a horizontal fade from light (text) into the photo's own studio grey (photo). */
+/* Site design: IBM Plex Sans throughout (Plex Mono only for dates and years).
+   Imperial Blue (#0000cd, from imperial.ac.uk's stylesheet) is the ONLY colour, used in the top bar.
+   Everything else is neutral: warm off-white, near-black accent. The hero fades horizontally
+   from light (text) into the photo's own studio grey (photo). */
 @import '@fontsource/ibm-plex-sans/300.css';
 @import '@fontsource/ibm-plex-sans/400.css';
 @import '@fontsource/ibm-plex-sans/400-italic.css';
@@ -29,11 +29,12 @@
   --text-soft: #2d3138;
   --muted: #61666e;
   --rule: #e7e4dd;
-  --accent: #0a5c8a;
-  --hover: #07476b;
+  --accent: #16181c;
+  --hover: #000000;
   --on-accent: #ffffff;
-  --tint: #e8f1f6;
-  --chip-border: #cddbe4;
+  --tint: #efede8;
+  --chip-border: #d9d6cf;
+  --chip-text: #2d3138;
   --card: #ffffff;
 
   --measure: 46rem;
@@ -49,44 +50,49 @@
     --text-soft: #cfcdc8;
     --muted: #999ca2;
     --rule: #2a2b2f;
-    --accent: #6cb6e0;
-    --hover: #9bd0ee;
+    --accent: #e8e7e4;
+    --hover: #ffffff;
     --on-accent: #121315;
-    --tint: #16232d;
-    --chip-border: #2c3d4a;
+    --tint: #232428;
+    --chip-border: #3a3c40;
+    --chip-text: #d6d4cf;
     --card: #1a1b1e;
     --band-light: #1a1b1e;
-    --band-photo: #55565a;
+    --band-photo: #888a8d; /* the photo's grey (#aeafb4) after the brightness(.78) filter below */
     --badge-quiet: #2a2c30;
   }
-  .band-photo { filter: brightness(0.5); }
-  .feature-figure { background: #f2f2f2; }
+  .band-photo { filter: brightness(0.78); }
+  .feature-figure { background: #f2f2f2; border-color: #2a2b2f; }
+  .feature-figure img { opacity: 0.92; }
 }
 
-/* Type: sans throughout, tight headings, mono for labels and metadata */
-.label, .feature-kicker, .chip { font-family: var(--font-meta); letter-spacing: 0.04em; }
-.label { font-size: 0.72rem; font-weight: 500; border-top: 0; padding-top: 0; color: var(--accent); }
-.chip { font-size: 0.72rem; letter-spacing: 0.02em; background: var(--card); }
-.page-title { font-weight: 600; letter-spacing: -0.025em; }
+/* Type: sans throughout; mono only for dates/years (set in common.css via --font-meta) */
+.label { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; border-top: 0; padding-top: 0; color: var(--muted); }
+.chip, .badge { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.02em; }
+.chip { background: var(--card); color: var(--chip-text); }
+.chip:hover { color: var(--text); }
+.feature-kicker { font-family: var(--font-ui); }
+.page-title { font-weight: 400; letter-spacing: -0.02em; }
 .name { font-size: clamp(2.5rem, 5.5vw, 3.4rem); font-weight: 300; letter-spacing: -0.02em; }
 .statement { font-size: 1.3rem; font-weight: 400; letter-spacing: -0.01em; line-height: 1.45; }
 .paper-title, .feature-title, .tool-card h2 { font-weight: 600; letter-spacing: -0.01em; }
 .paper-title { font-size: 1.125rem; }
 .feature-title { font-size: 1.1rem; }
 .site-name { font-size: 1.05rem; letter-spacing: -0.01em; }
-.feature-card .feature-figure, .tool-card { box-shadow: 0 1px 3px rgb(30 25 15 / 0.06); }
-.tool-card { background: var(--card); }
+.feature-card .feature-figure { box-shadow: 0 1px 3px rgb(30 25 15 / 0.06); }
 
 /* Top bar: the one place Imperial Blue appears */
 .site-header { background: var(--imperial-blue); border-bottom: 0; }
 .site-header .site-name, .site-header .site-name:hover { color: #fff; font-weight: 500; }
 .site-header .wrap { align-items: center; }
 .org-logo { display: block; padding-left: 1rem; border-left: 1px solid rgb(255 255 255 / 0.35); }
-.org-logo img { height: 1.9rem; width: auto; }
+.org-logo img { height: 1.7rem; width: auto; }
 @media (max-width: 34rem) { .org-logo img { height: 1.6rem; } .site-header .wrap { row-gap: 0.75rem; } }
 .is-home .site-name { visibility: visible; }
 .site-header nav a { color: rgb(255 255 255 / 0.8); }
 .site-header nav a:hover { color: #fff; }
+.site-header .wrap { padding-block: 0.95rem; }
+.site-header nav a { padding-block: 0.375rem; }
 .site-header nav a[aria-current='page'] { color: #fff; border-bottom-color: #fff; }
 .site-header a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
@@ -94,7 +100,6 @@
 main { padding-top: 0; }
 .band {
   background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 42%, var(--band-photo) 72%, var(--band-photo) 100%);
-  border-bottom: 1px solid var(--rule);
   overflow: hidden;
 }
 .band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 2rem; align-items: end; }
@@ -113,6 +118,7 @@ main { padding-top: 0; }
 .band .statement { margin-bottom: 1rem; }
 .band .bio { color: var(--text-soft); }
 
+.band + .block { margin-top: 4rem; }
 .block .label + .feature-grid { margin-bottom: 3rem; }
 .news { max-width: 46rem; }
 body:not(.is-home) main { padding-top: 3.5rem; }

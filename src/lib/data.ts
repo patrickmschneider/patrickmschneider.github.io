@@ -38,7 +38,6 @@ const paperSchema = z
     year: z.number().optional(),
     status: z.enum(['working', 'forthcoming', 'published']).optional(),
     journal: z.string().optional(),
-    short: z.string().optional(),
     image: z.string().optional(),
     teaser: z.string().optional(),
     coauthors: z.array(coauthor).default([]),
@@ -101,11 +100,34 @@ function load<T extends z.ZodType>(file: string, schema: T): z.infer<T> {
 }
 
 export const profile = load('profile.yaml', profileSchema);
-export const papers = load('papers.yaml', z.array(paperSchema));
+// Newest first within each section (stable, so equal years keep their file order).
+export const papers = load('papers.yaml', z.array(paperSchema)).sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 export const teaching = load('teaching.yaml', teachingSchema);
 export const tools = load('tools.yaml', toolsSchema);
 export const news = load('news.yaml', newsSchema).news;
-export const liveTools = tools.tools.filter((t) => t.url);
+/** Date of the latest commit to a tool's GitHub repo, fetched at build time ("Nov 2026"). */
+async function lastUpdated(source?: string): Promise<string | undefined> {
+  const repo = source?.match(/github\.com\/([^/]+\/[^/#?]+)/)?.[1];
+  if (!repo) return undefined;
+  try {
+    const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
+    if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    const res = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, {
+      headers,
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!res.ok) return undefined;
+    const [latest] = (await res.json()) as { commit: { committer: { date: string } } }[];
+    const d = new Date(latest.commit.committer.date);
+    return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+  } catch {
+    return undefined; // offline or rate-limited: just omit the date
+  }
+}
+
+export const liveTools = await Promise.all(
+  tools.tools.filter((t) => t.url).map(async (t) => ({ ...t, updated: await lastUpdated(t.source) })),
+);
 
 /** Publication status: explicit `status`, otherwise working papers are 'working' and the rest 'published'. */
 export function paperStatus(p: Paper): { kind: 'working' | 'forthcoming' | 'published'; label: string } {

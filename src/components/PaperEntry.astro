@@ -6,7 +6,6 @@ interface Props {
 }
 const { paper } = Astro.props;
 const id = slug(paper.title);
-const isPdf = (url: string) => /\.pdf($|\?)/i.test(url);
 const n = paper.coauthors.length;
 const sep = (i: number) => (i < n - 2 ? ', ' : i === n - 2 ? (n > 2 ? ', and ' : ' and ') : '');
 ---
@@ -14,7 +13,6 @@ const sep = (i: number) => (i < n - 2 ? ', ' : i === n - 2 ? (n > 2 ? ', and ' :
 <article class="paper" id={id}>
   <div class="paper-meta">
     {paper.year && <span class="paper-year">{paper.year}</span>}
-    {paper.short && <span class="paper-short">{paper.short}</span>}
   </div>
   <div class="paper-body">
     <h3 class="paper-title">
@@ -38,7 +36,7 @@ const sep = (i: number) => (i < n - 2 ? ', ' : i === n - 2 ? (n > 2 ? ', and ' :
     )}
 
     <div class="paper-links">
-      {paper.url && <a class="chip" href={paper.url}>{isPdf(paper.url) ? 'PDF' : 'Paper'}</a>}
+      {paper.url && <a class="chip" href={paper.url}>Paper</a>}
       {paper.links.map((l) => <a class="chip" href={l.url}>{l.label}</a>)}
       {paper.abstract && (
         <button type="button" class="chip abstract-toggle" aria-expanded="false" aria-controls={`${id}-abstract`}>

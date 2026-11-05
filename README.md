@@ -60,10 +60,18 @@ repo only links to them. Don't create pages here whose names match a tool repo.
 Redirects for the old Google Sites addresses are in `astro.config.mjs` (`/home` and
 `/macro-conference-tracker`).
 
-## Design themes and previews
+## Design
 
-The look lives in `src/themes/`: `common.css` holds the shared structure, and each folder (`live`, `a`, `b`)
-holds one design's colours, fonts and home-page layout. The live site uses `live`.
+The look lives in `src/themes/`: `common.css` holds the shared structure and `site/` holds the design
+(colours, fonts, home-page layout). Imperial Blue is used only in the top bar.
 
-Designs listed in `previews.txt` are also published at `/preview-<name>/` (hidden from search engines).
-Preview one locally with `npm run dev:a` or `npm run dev:b`.
+To try an alternative design without touching the live one, copy `site/` to e.g. `src/themes/x/`, edit it,
+and add `x` to `previews.txt`: it is then published at `/preview-x/` (hidden from search engines).
+Preview locally with `THEME=x npx astro dev`.
+
+## Images
+
+- `public/images/headshot.jpg` (1600px) and `headshot-860.jpg` are square crops of the studio original.
+  The originals live in `images/` (not committed).
+- `public/images/thumbs/` holds the figure cards: tool screenshots and recoloured paper figures.
+- Tool "Updated" dates are looked up from each tool repo's latest commit when the site builds.

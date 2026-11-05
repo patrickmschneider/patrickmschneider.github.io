@@ -26,6 +26,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build:all
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # for tool 'last updated' dates
       - uses: actions/upload-pages-artifact@v5
         with:
           path: dist

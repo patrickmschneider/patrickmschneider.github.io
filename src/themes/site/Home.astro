@@ -31,13 +31,13 @@ const featured = papers.filter((p) => p.featured);
   <h2 class="label">Research</h2>
   <ul class="feature-grid">
     {featured.map((p) => (
-      <FeatureCard href={p.url ?? '#'} title={p.title} image={p.image} badge={paperStatus(p)} kicker={p.journal ?? (p.year ? String(p.year) : undefined)} text={p.teaser} />
+      <FeatureCard href={p.url ?? '#'} title={p.title} image={p.image} badge={paperStatus(p)} journal={p.journal} date={p.journal ? undefined : p.year?.toString()} text={p.teaser} />
     ))}
   </ul>
   <h2 class="label">Tools</h2>
   <ul class="feature-grid">
     {liveTools.map((t) => (
-      <FeatureCard href={t.url!} title={t.title} image={t.image} kicker="Tool" text={t.description} />
+      <FeatureCard href={t.url!} title={t.title} image={t.image} date={t.updated && `Updated ${t.updated}`} text={t.description} />
     ))}
   </ul>
 </section>

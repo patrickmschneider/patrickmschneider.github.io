@@ -1,11 +1,10 @@
 # Research page. Papers appear in the order listed, grouped by `section`.
 #
 # section:  working | published | prephd
-# year:     shown in the left-hand column
+# year:     shown in the left-hand column; papers are listed newest first within each section
 # status:   working | forthcoming | published (optional; defaults to working for
 #           working papers, published otherwise). Shown as a badge on home-page cards.
 # journal:  journal name, shown next to the status badge (e.g. National Tax Journal)
-# short:    short label under the year, e.g. "BoE WP 798" or "NTJ"
 # url:      where the title links (PDF or landing page)
 # coauthors: list of names; add a url to link a name, e.g. {name: Jane Doe, url: https://…}
 # venue:    journal / series line, shown under the title
@@ -45,7 +44,7 @@
   year: 2025
   featured: true
   image: /images/thumbs/household-liquidity-policy.png
-  teaser: Early access to retirement savings stimulates like fiscal policy, but the bill falls on poorer households.
+  teaser: Early pension access stimulates like fiscal policy, but poorer households foot the bill.
   url: /files/schneider-moran-household-liquidity-policy.pdf
   coauthors:
     - Patrick Moran
@@ -102,17 +101,16 @@
   year: 2026
   status: forthcoming
   journal: National Tax Journal
-  short: NTJ
   featured: true
   image: /images/thumbs/self-control-early-withdrawal.png
-  teaser: Those with the most self-control issues are 60% more likely to withdraw retirement savings early.
+  teaser: Those with the most self-control issues are 60% more likely to withdraw early.
   url: /files/moran-schneider-self-control-early-withdrawal.pdf
   coauthors:
     - Patrick Moran
   venue: Forthcoming, *National Tax Journal*
   links:
     - { label: Appendix, url: /files/moran-schneider-self-control-early-withdrawal-appendix.pdf }
-    - { label: IFS Working Paper, url: https://ifs.org.uk/publications/self-control-and-early-withdrawal-retirement-accounts }
+    - { label: IFS WP, url: https://ifs.org.uk/publications/self-control-and-early-withdrawal-retirement-accounts }
   abstract: >-
     Using a survey-elicited measure of psychological self-control and a policy change in Australia
     during COVID-19, we find that self-control issues significantly predict early withdrawals from
@@ -130,7 +128,6 @@
   coauthors:
     - Hanwei Huang
     - Thomas Sampson
-  short: CEP BA 17
   venue: CEP Brexit Analysis No. 17
   links:
     - { label: LSE blog, url: "https://blogs.lse.ac.uk/brexit/2021/02/04/indyref2-scottish-independence-would-be-2-3-times-more-costly-than-that-of-brexit-and-rejoining-the-eu-wouldnt-make-up-the-difference/" }
@@ -148,7 +145,6 @@
     - Riccardo Masolo
     - Martin Seneca
     - Srdan Tatomir
-  short: BoE WP 798
   venue: Bank of England Working Paper No. 798
   links:
     - { label: Speech, url: https://www.bankofengland.co.uk/-/media/boe/files/speech/2018/market-power-and-monetary-policy-speech-by-andy-haldane.pdf }
@@ -157,7 +153,6 @@
   title: Decomposing Differences in Productivity Distributions
   year: 2018
   url: https://www.bankofengland.co.uk/working-paper/2018/decomposing-differences-in-productivity-distributions
-  short: BoE WP 740
   venue: Bank of England Working Paper No. 740
   links:
     - { label: Bank Underground blog, url: https://bankunderground.co.uk/2018/03/29/the-uks-productivity-puzzle-is-in-the-top-tail-of-the-distribution/ }
@@ -168,5 +163,4 @@
   url: https://onlinelibrary.wiley.com/doi/full/10.1111/jpet.12174
   coauthors:
     - Gautam Bose
-  short: JPET
   venue: "*Journal of Public Economic Theory* 19:1"

@@ -1,22 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
+import FeatureCard from '../components/FeatureCard.astro';
 import { tools, liveTools } from '../lib/data';
 ---
 
 <Base title="Tools">
-  <div class="wrap">
+  <div class="wrap wide reading">
     <h1 class="page-title">Tools</h1>
     {tools.intro && <p class="lede">{tools.intro}</p>}
-    <ul class="tool-grid">
+    <ul class="feature-grid">
       {liveTools.map((t) => (
-        <li class="tool-card">
-          {t.image && <img src={t.image} alt="" loading="lazy" width="960" height="540" />}
-          <div class="tool-card-body">
-            <h2><a class="stretched" href={t.url}>{t.title}</a></h2>
-            <p>{t.description}</p>
-            {t.source && <a class="tool-source" href={t.source}>Source on GitHub</a>}
-          </div>
-        </li>
+        <FeatureCard href={t.url!} title={t.title} image={t.image} date={t.updated && `Updated ${t.updated}`} text={t.description} source={t.source} />
       ))}
     </ul>
   </div>
