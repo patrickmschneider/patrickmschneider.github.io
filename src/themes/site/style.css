@@ -82,7 +82,10 @@
 .feature-card .feature-figure { box-shadow: 0 1px 3px rgb(30 25 15 / 0.06); }
 
 /* Top bar: the one place Imperial Blue appears. It stays pinned to the top while scrolling. */
-.site-header { background: var(--imperial-blue); border-bottom: 0; position: sticky; top: 0; z-index: 50; }
+/* The sticky element itself is transparent; the blue sits on an inner layer. Safari tints its toolbar
+   from the pinned element's own background, so this keeps the browser chrome page-coloured. */
+.site-header { background: transparent; border-bottom: 0; position: sticky; top: 0; z-index: 50; }
+.site-header-bar { background: var(--imperial-blue); }
 .paper { scroll-margin-top: 6rem; } /* keep #paper links clear of the pinned bar */
 .site-header .site-name, .site-header .site-name:hover { color: #fff; font-weight: 500; }
 .site-header .wrap { align-items: center; }
