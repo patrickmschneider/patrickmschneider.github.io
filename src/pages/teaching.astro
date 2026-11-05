@@ -4,22 +4,25 @@ import { teaching } from '../lib/data';
 ---
 
 <Base title="Teaching">
-  <h1>Teaching</h1>
-  {teaching.map((inst) => (
-    <section>
-      <h2>{inst.institution}</h2>
-      <ul class="course-list">
-        {inst.courses.map((c) => (
-          <li>
-            <span class="course-title">
-              {c.code && <span class="course-code">{c.code}</span>}
-              {c.title}
-            </span>
-            {c.level && <span class="course-level">{c.level}</span>}
-            {c.years && <span class="course-years">{c.years}</span>}
-          </li>
-        ))}
-      </ul>
-    </section>
-  ))}
+  <div class="wrap reading">
+    <h1 class="page-title">Teaching</h1>
+    {teaching.map((inst) => (
+      <section>
+        <h2 class="label">{inst.institution}</h2>
+        <ul class="course-list">
+          {inst.courses.map((c) => (
+            <li class="course">
+              <span class="course-years">{c.years}</span>
+              <span class="course-body">
+                <span class="course-title">{c.title}</span>
+                <span class="course-level">
+                  {c.level}{c.code && <> · {c.code}</>}
+                </span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
 </Base>

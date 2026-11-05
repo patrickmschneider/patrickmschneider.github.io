@@ -1,21 +1,28 @@
 # Research page. Papers appear in the order listed, grouped by `section`.
 #
 # section:  working | published | prephd
+# year:     shown in the left-hand column
+# short:    short label under the year, e.g. "BoE WP 798" or "NTJ"
 # url:      where the title links (PDF or landing page)
 # coauthors: list of names; add a url to link a name, e.g. {name: Jane Doe, url: https://…}
 # venue:    journal / series line, shown under the title
 # note:     short status note, e.g. "forthcoming at …"
 # links:    extra buttons (appendix, slides, code, blog, …)
 # abstract: optional; shown in a collapsible box
-# featured: true puts the paper on the home page
+# featured: true puts the paper on the home page ("Selected research")
+# image:    figure shown on the home-page card (put files in public/images/thumbs/)
+# teaser:   one line shown under the title on the home-page card
 
 - section: working
   title: Who Pays for AI?
+  year: 2026
   url: https://whopaysfor.ai/paper/
   featured: true
+  image: /images/thumbs/who-pays-for-ai.jpg
+  teaser: One in twenty UK adults now pays for an AI assistant. Who are they?
   coauthors:
     - Nikhil Datta
-    - Peter Lambert
+    - { name: Peter Lambert, url: "https://peterjohnlambert.com" }
   links:
     - { label: Website, url: https://whopaysfor.ai/ }
   abstract: >-
@@ -32,6 +39,10 @@
 
 - section: working
   title: Household Liquidity Policy
+  year: 2025
+  featured: true
+  image: /images/thumbs/household-liquidity-policy.png
+  teaser: Early access to retirement savings stimulates like fiscal policy, but the bill falls on poorer households.
   url: /files/schneider-moran-household-liquidity-policy.pdf
   coauthors:
     - Patrick Moran
@@ -50,6 +61,7 @@
 
 - section: working
   title: "The Nested-Drift Algorithm: A New Solution Approach to Continuous Time Problems with Multiple Endogenous State Variables"
+  year: 2024
   url: https://github.com/SSabet/NestedDrift/blob/main/Sabet%20%26%20Schneider%20-%20Nested%20Drift.pdf?raw=true
   coauthors:
     - Soroush Sabet
@@ -68,6 +80,7 @@
 
 - section: working
   title: "Yield to Temptation: A Comparison of Present-Biased Preferences in Continuous Time"
+  year: 2025
   url: /files/schneider-yield-to-temptation.pdf
   abstract: >-
     I compare two ways of modelling present bias in dynamic consumption-saving problems:
@@ -83,10 +96,15 @@
 
 - section: published
   title: Self-Control and Early Withdrawal from Retirement Accounts
+  year: 2026
+  short: NTJ
+  featured: true
+  image: /images/thumbs/self-control-early-withdrawal.png
+  teaser: Those with the most self-control issues are 60% more likely to withdraw retirement savings early.
   url: /files/moran-schneider-self-control-early-withdrawal.pdf
   coauthors:
     - Patrick Moran
-  note: Forthcoming at National Tax Journal
+  venue: Forthcoming, *National Tax Journal*
   links:
     - { label: Appendix, url: /files/moran-schneider-self-control-early-withdrawal-appendix.pdf }
     - { label: IFS Working Paper, url: https://ifs.org.uk/publications/self-control-and-early-withdrawal-retirement-accounts }
@@ -107,6 +125,7 @@
   coauthors:
     - Hanwei Huang
     - Thomas Sampson
+  short: CEP BA 17
   venue: CEP Brexit Analysis No. 17
   links:
     - { label: LSE blog, url: "https://blogs.lse.ac.uk/brexit/2021/02/04/indyref2-scottish-independence-would-be-2-3-times-more-costly-than-that-of-brexit-and-rejoining-the-eu-wouldnt-make-up-the-difference/" }
@@ -124,6 +143,7 @@
     - Riccardo Masolo
     - Martin Seneca
     - Srdan Tatomir
+  short: BoE WP 798
   venue: Bank of England Working Paper No. 798
   links:
     - { label: Speech, url: https://www.bankofengland.co.uk/-/media/boe/files/speech/2018/market-power-and-monetary-policy-speech-by-andy-haldane.pdf }
@@ -132,6 +152,7 @@
   title: Decomposing Differences in Productivity Distributions
   year: 2018
   url: https://www.bankofengland.co.uk/working-paper/2018/decomposing-differences-in-productivity-distributions
+  short: BoE WP 740
   venue: Bank of England Working Paper No. 740
   links:
     - { label: Bank Underground blog, url: https://bankunderground.co.uk/2018/03/29/the-uks-productivity-puzzle-is-in-the-top-tail-of-the-distribution/ }
@@ -142,4 +163,5 @@
   url: https://onlinelibrary.wiley.com/doi/full/10.1111/jpet.12174
   coauthors:
     - Gautam Bose
-  venue: Journal of Public Economic Theory 19:1
+  short: JPET
+  venue: "*Journal of Public Economic Theory* 19:1"

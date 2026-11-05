@@ -59,3 +59,11 @@ repo only links to them. Don't create pages here whose names match a tool repo.
 
 Redirects for the old Google Sites addresses are in `astro.config.mjs` (`/home` and
 `/macro-conference-tracker`).
+
+## Design themes and previews
+
+The look lives in `src/themes/`: `common.css` holds the shared structure, and each folder (`live`, `a`, `b`)
+holds one design's colours, fonts and home-page layout. The live site uses `live`.
+
+Designs listed in `previews.txt` are also published at `/preview-<name>/` (hidden from search engines).
+Preview one locally with `npm run dev:a` or `npm run dev:b`.

@@ -1,21 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
-import { tools } from '../lib/data';
+import { tools, liveTools } from '../lib/data';
 ---
 
 <Base title="Tools">
-  <h1>Tools</h1>
-  {tools.intro && <p class="lede">{tools.intro}</p>}
-  <ul class="tool-grid">
-    {tools.tools.map((t) => (
-      <li class:list={['tool', { pending: !t.url }]}>
-        <h2>{t.url ? <a href={t.url}>{t.title}</a> : t.title}</h2>
-        <p>{t.description}</p>
-        <p class="tool-meta">
-          {!t.url && <span>Coming soon</span>}
-          {t.source && <a href={t.source}>Source</a>}
-        </p>
-      </li>
-    ))}
-  </ul>
+  <div class="wrap">
+    <h1 class="page-title">Tools</h1>
+    {tools.intro && <p class="lede">{tools.intro}</p>}
+    <ul class="tool-grid">
+      {liveTools.map((t) => (
+        <li class="tool-card">
+          {t.image && <img src={t.image} alt="" loading="lazy" width="960" height="540" />}
+          <div class="tool-card-body">
+            <h2><a class="stretched" href={t.url}>{t.title}</a></h2>
+            <p>{t.description}</p>
+            {t.source && <a class="tool-source" href={t.source}>Source on GitHub</a>}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
 </Base>

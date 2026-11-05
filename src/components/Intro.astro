@@ -1,0 +1,29 @@
+---
+// Name, tagline, statement, bio and links: the text half of the home-page hero.
+import { profile, inlineMd } from '../lib/data';
+
+interface Props {
+  showBio?: boolean;
+}
+const { showBio = true } = Astro.props;
+const primary = profile.links.filter((l) => l.primary);
+const secondary = profile.links.filter((l) => !l.primary);
+---
+
+<div class="intro-text">
+  <h1 class="name">{profile.name}</h1>
+  <p class="tagline">
+    {profile.position}<span class="sep" aria-hidden="true"> · </span><br class="tagline-break" />
+    {profile.affiliation_url ? <a href={profile.affiliation_url}>{profile.affiliation}</a> : profile.affiliation}
+  </p>
+  {profile.statement && <p class="statement" set:html={inlineMd(profile.statement)} />}
+  {showBio && profile.bio.map((para) => <p class="bio" set:html={inlineMd(para)} />)}
+  <div class="actions">
+    {primary.map((l, i) => (
+      <a class:list={['btn', i === 0 ? 'btn-solid' : 'btn-outline']} href={l.url}>{l.label}</a>
+    ))}
+    <ul class="social">
+      {secondary.map((l) => <li><a href={l.url}>{l.label}</a></li>)}
+    </ul>
+  </div>
+</div>

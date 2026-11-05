@@ -1,0 +1,28 @@
+/* Live site (until a design is chosen): the original interim look, on the shared structure. */
+@import '../common.css';
+
+:root {
+  --font-body: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
+  --font-display: var(--font-body);
+  --font-ui: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-meta: var(--font-ui);
+  --bg: #fdfdfc;
+  --text: #1d1f21;
+  --muted: #5f6368;
+  --rule: #e4e4e0;
+  --accent: #0b3d91;
+  --hover: #0b3d91;
+  --on-accent: #fff;
+  --tint: #eef2f8;
+  --chip-border: #d6deea;
+  --measure: 46rem;
+  --wide: 46rem;
+  --radius: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #15171a; --text: #e6e6e3; --muted: #9aa0a6; --rule: #2c2f33; --accent: #8fb4ff; --hover: #8fb4ff; --on-accent: #15171a; --tint: #222a36; --chip-border: #333d4a; }
+}
+.hero { display: grid; grid-template-columns: 11rem 1fr; gap: 2rem; align-items: start; }
+.hero .intro-text { order: 2; }
+.hero-photo { border-radius: 6px; }
+@media (max-width: 36rem) { .hero { grid-template-columns: 1fr; } .hero-photo { max-width: 9rem; } }

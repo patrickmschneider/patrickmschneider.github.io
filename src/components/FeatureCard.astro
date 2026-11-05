@@ -1,0 +1,20 @@
+---
+// A card with a figure on top, used for featured papers and tools on the home page.
+interface Props {
+  href: string;
+  title: string;
+  image?: string;
+  kicker?: string;
+  text?: string;
+}
+const { href, title, image, kicker, text } = Astro.props;
+---
+
+<li class="feature-card">
+  <div class="feature-figure">
+    {image && <img src={image} alt="" loading="lazy" />}
+  </div>
+  {kicker && <p class="feature-kicker">{kicker}</p>}
+  <h3 class="feature-title"><a class="stretched" href={href}>{title}</a></h3>
+  {text && <p class="feature-text">{text}</p>}
+</li>

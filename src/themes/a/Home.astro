@@ -1,0 +1,50 @@
+---
+// Direction A, "Editorial": text-led hero with photo on the right,
+// selected research as figure cards, then News | Tools side by side.
+import Intro from '../../components/Intro.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import { profile, papers, news, liveTools, inlineMd } from '../../lib/data';
+import { page } from '../../lib/url';
+
+const featured = papers.filter((p) => p.featured);
+const status = (p: (typeof papers)[number]) =>
+  [p.year, p.short ?? (p.section === 'working' ? 'Working paper' : undefined)].filter(Boolean).join(' · ');
+---
+
+<section class="wrap wide hero">
+  <Intro />
+  <img class="hero-photo" src={profile.photo} alt={`Photo of ${profile.name}`} width="790" height="800" />
+</section>
+
+{featured.length > 0 && (
+  <section class="wrap wide block">
+    <h2 class="label">Selected research</h2>
+    <ul class="feature-grid">
+      {featured.map((p) => (
+        <FeatureCard href={p.url ?? page('/research/')} title={p.title} image={p.image} kicker={status(p)} text={p.teaser} />
+      ))}
+    </ul>
+    <p class="more"><a href={page('/research/')}>All research →</a></p>
+  </section>
+)}
+
+<section class="wrap wide block split">
+  {news.length > 0 && (
+    <div>
+      <h2 class="label">News</h2>
+      <ol class="news">
+        {news.map((n) => (
+          <li><span class="news-date">{n.date}</span><span set:html={inlineMd(n.text)} /></li>
+        ))}
+      </ol>
+    </div>
+  )}
+  <div>
+    <h2 class="label">Tools</h2>
+    <ul class="tool-list">
+      {liveTools.map((t) => (
+        <li><a href={t.url}>{t.title} <span aria-hidden="true">→</span></a><span>{t.description}</span></li>
+      ))}
+    </ul>
+  </div>
+</section>

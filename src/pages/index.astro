@@ -1,29 +1,9 @@
 ---
+// The home page layout differs per design, so it lives in the theme folder.
 import Base from '../layouts/Base.astro';
-import PaperEntry from '../components/PaperEntry.astro';
-import { profile, papers, inlineMd } from '../lib/data';
-
-const featured = papers.filter((p) => p.featured);
+import Home from '@theme/Home.astro';
 ---
 
-<Base>
-  <section class="intro">
-    <img class="headshot" src={profile.photo} alt={`Photo of ${profile.name}`} width="790" height="800" />
-    <div>
-      <h1>{profile.name}</h1>
-      {profile.bio.map((para) => <p set:html={inlineMd(para)} />)}
-      <ul class="link-row">
-        {profile.links.map((l) => (
-          <li><a href={l.url}>{l.label}</a></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  {featured.length > 0 && (
-    <section class="featured">
-      <h2>Featured</h2>
-      {featured.map((p) => <PaperEntry paper={p} showAbstract={false} />)}
-    </section>
-  )}
+<Base isHome>
+  <Home />
 </Base>

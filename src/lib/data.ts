@@ -6,7 +6,7 @@ import { join } from 'node:path';
 import { parse } from 'yaml';
 import { z } from 'astro/zod';
 
-const link = z.object({ label: z.string(), url: z.string() }).strict();
+const link = z.object({ label: z.string(), url: z.string(), primary: z.boolean().default(false) }).strict();
 
 const profileSchema = z
   .object({
@@ -14,10 +14,13 @@ const profileSchema = z
     position: z.string(),
     affiliation: z.string(),
     affiliation_url: z.string().optional(),
+    address: z.string().optional(),
     photo: z.string(),
     description: z.string(),
+    statement: z.string().optional(),
     bio: z.array(z.string()),
     email: z.string(),
+    cv: z.string().optional(),
     links: z.array(link),
   })
   .strict();
@@ -33,6 +36,9 @@ const paperSchema = z
     title: z.string(),
     url: z.string().optional(),
     year: z.number().optional(),
+    short: z.string().optional(),
+    image: z.string().optional(),
+    teaser: z.string().optional(),
     coauthors: z.array(coauthor).default([]),
     venue: z.string().optional(),
     note: z.string().optional(),
@@ -69,10 +75,17 @@ const toolsSchema = z
           title: z.string(),
           description: z.string(),
           url: z.string().optional(),
+          image: z.string().optional(),
           source: z.string().optional(),
         })
         .strict(),
     ),
+  })
+  .strict();
+
+const newsSchema = z
+  .object({
+    news: z.array(z.object({ date: z.string(), text: z.string() }).strict()).default([]),
   })
   .strict();
 
@@ -89,6 +102,12 @@ export const profile = load('profile.yaml', profileSchema);
 export const papers = load('papers.yaml', z.array(paperSchema));
 export const teaching = load('teaching.yaml', teachingSchema);
 export const tools = load('tools.yaml', toolsSchema);
+export const news = load('news.yaml', newsSchema).news;
+export const liveTools = tools.tools.filter((t) => t.url);
+
+/** URL-safe id for a paper, used for #anchors. */
+export const slug = (s: string) =>
+  s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
 
 export type Paper = z.infer<typeof paperSchema>;
 

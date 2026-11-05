@@ -1,0 +1,11 @@
+# Home page news, newest first. Keep 3–5 items; delete old ones.
+# Leave the list empty (news: []) to hide the section entirely.
+#
+# EXAMPLE ITEMS BELOW: these are placeholders to show the layout, not real news.
+news:
+  - date: Mon 2026
+    text: "Example: Paper accepted / presented at … (replace me)"
+  - date: Mon 2026
+    text: "Example: *Who Pays for AI?* covered in … (replace me)"
+  - date: Mon 2026
+    text: "Example: Joined Imperial Business School (replace me)"

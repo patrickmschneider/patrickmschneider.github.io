@@ -1,28 +1,31 @@
 ---
-import '../styles/global.css';
+import '@theme/style.css';
 import { profile } from '../lib/data';
+import { page, isPreview, theme } from '../lib/url';
 
 interface Props {
   title?: string;
   description?: string;
+  isHome?: boolean;
 }
-const { title, description = profile.description } = Astro.props;
+const { title, description = profile.description, isHome = false } = Astro.props;
 const fullTitle = title ? `${title} · ${profile.name}` : `${profile.name} · ${profile.affiliation}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(profile.photo, Astro.site);
 
 const nav = [
-  { href: '/', label: 'Home' },
-  { href: '/research/', label: 'Research' },
-  { href: '/teaching/', label: 'Teaching' },
-  { href: '/tools/', label: 'Tools' },
+  { href: page('/research/'), label: 'Research' },
+  { href: page('/teaching/'), label: 'Teaching' },
+  { href: page('/tools/'), label: 'Tools' },
+  ...(profile.cv ? [{ href: profile.cv, label: 'CV' }] : []),
 ];
 const path = Astro.url.pathname.replace(/\/?$/, '/');
-const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const home = page('/');
+const isCurrent = (href: string) => path.startsWith(href);
 ---
 
 <!doctype html>
-<html lang="en-GB">
+<html lang="en-GB" data-theme={theme || 'live'}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,6 +34,7 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="color-scheme" content="light dark" />
+    {isPreview && <meta name="robots" content="noindex" />}
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
@@ -38,12 +42,13 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
     <meta name="twitter:card" content="summary" />
+    <noscript><style>.paper-abstract[hidden] { display: block !important; } .abstract-toggle { display: none; }</style></noscript>
   </head>
-  <body>
+  <body class:list={{ 'is-home': isHome }}>
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap">
-        <a class="site-name" href="/">{profile.name}</a>
+        <a class="site-name" href={home}>{profile.name}</a>
         <nav aria-label="Main">
           {nav.map((n) => (
             <a href={n.href} aria-current={isCurrent(n.href) ? 'page' : undefined}>{n.label}</a>
@@ -52,15 +57,31 @@ const isCurrent = (href: string) => (href === '/' ? path === '/' : path.startsWi
       </div>
     </header>
 
-    <main id="main" class="wrap">
+    <main id="main">
       <slot />
     </main>
 
     <footer class="site-footer">
       <div class="wrap">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        <span>{profile.address ?? profile.affiliation}</span>
+        <span class="footer-links">
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+          {profile.cv && <a href={profile.cv}>CV</a>}
+        </span>
       </div>
     </footer>
+
+    <script>
+      // Abstract toggles: a button in the link row shows/hides the abstract below it.
+      document.querySelectorAll<HTMLButtonElement>('.abstract-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = document.getElementById(btn.getAttribute('aria-controls')!);
+          if (!target) return;
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!open));
+          target.hidden = open;
+        });
+      });
+    </script>
   </body>
 </html>

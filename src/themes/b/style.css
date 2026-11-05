@@ -1,0 +1,77 @@
+/* Direction B, "Figure-led": crisp white, Newsreader + IBM Plex Sans/Mono, teal-blue accent, a shaded hero band. */
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import '../common.css';
+
+:root {
+  --font-body: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-display: 'Newsreader Variable', Georgia, serif;
+  --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-meta: 'IBM Plex Mono', ui-monospace, monospace;
+  --body-size: 1rem;
+
+  --bg: #ffffff;
+  --text: #0e1116;
+  --text-soft: #2a3038;
+  --muted: #66707a;
+  --rule: #e8ebee;
+  --accent: #0a5c8a;
+  --hover: #07476b;
+  --on-accent: #ffffff;
+  --tint: #eef5fa;
+  --chip-border: #cfdbe4;
+  --band: #f2f5f7;
+
+  --measure: 46rem;
+  --wide: 68rem;
+  --radius: 4px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1215;
+    --text: #e6e9ec;
+    --text-soft: #c9ced4;
+    --muted: #8d97a1;
+    --rule: #252a30;
+    --accent: #6cb6e0;
+    --hover: #9bd0ee;
+    --on-accent: #0f1215;
+    --tint: #16232d;
+    --chip-border: #2c3d4a;
+    --band: #161a1e;
+  }
+  .band-photo { filter: brightness(0.9); }
+  .feature-figure { background: #f2f4f6; }
+}
+
+/* Mono for labels and metadata */
+.label, .feature-kicker, .chip { font-family: var(--font-meta); letter-spacing: 0.04em; }
+.label { font-size: 0.72rem; font-weight: 500; border-top: 0; padding-top: 0; color: var(--accent); }
+.chip { font-size: 0.72rem; letter-spacing: 0.02em; }
+.page-title, .name { font-weight: 600; letter-spacing: -0.02em; }
+.name { font-size: clamp(2.4rem, 5vw, 3.1rem); }
+.statement { font-family: var(--font-display); font-size: 1.35rem; }
+.paper-title, .feature-title, .tool-card h2 { font-family: var(--font-display); font-size: 1.25rem; }
+.site-name { font-size: 1.2rem; }
+
+/* Hero band: full width, photo left */
+main { padding-top: 0; }
+.band { background: var(--band); border-bottom: 1px solid var(--rule); margin-bottom: 1rem; }
+.band-inner { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 3rem; align-items: center; padding-block: 3.5rem; }
+.band-photo { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 22%; border-radius: 50%; }
+.band .statement { max-width: 40rem; margin-bottom: 0; }
+.band .tagline { margin-bottom: 1.25rem; }
+.block .label + .feature-grid { margin-bottom: 3rem; }
+
+/* Non-home pages keep normal top spacing */
+body:not(.is-home) main { padding-top: 3.5rem; }
+
+@media (max-width: 46rem) {
+  .band-inner { grid-template-columns: 6.5rem 1fr; gap: 1.25rem; padding-block: 2rem; align-items: start; }
+  .band .statement { font-size: 1.15rem; }
+}
