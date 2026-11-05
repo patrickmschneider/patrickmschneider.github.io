@@ -55,7 +55,7 @@ const heroTools = liveTools.filter((t) => t.hero);
   <h2 class="label">Research</h2>
   <ul class="feature-grid">
     {featured.map((p) => (
-      <FeatureCard href={p.url ?? page('/research/')} title={p.title} image={p.image} alt={`Figure from ${p.title}`} badge={paperStatus(p)} text={p.teaser} />
+      <FeatureCard href={p.url ?? page('/research/')} title={p.title} image={p.image} alt={`Figure from ${p.title}`} badge={paperStatus(p)} journal={p.journal} text={p.teaser} />
     ))}
   </ul>
   <p class="more"><a href={page('/research/')}>All research →</a></p>

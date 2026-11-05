@@ -4,7 +4,7 @@
 # year:     shown in the left-hand column; papers are listed newest first within each section
 # status:   working | forthcoming | published (optional; defaults to working for
 #           working papers, published otherwise). Shown as a badge on home-page cards.
-# journal:  journal name, shown next to the status badge (e.g. National Tax Journal)
+# journal:  short journal name, shown next to the status badge on the home page (e.g. NTJ)
 # url:      where the title links (PDF or landing page)
 # coauthors: list of names; add a url to link a name, e.g. {name: Jane Doe, url: https://…}
 # venue:    journal / series line, shown under the title
@@ -23,7 +23,7 @@
   image: /images/thumbs/who-pays-for-ai.png
   teaser: One in twenty UK adults now pays for an AI assistant. Who are they?
   coauthors:
-    - Nikhil Datta
+    - { name: Nikhil Datta, url: "https://www.nikhil-datta.com/" }
     - { name: Peter Lambert, url: "https://peterjohnlambert.com" }
   links:
     - { label: Website, url: https://whopaysfor.ai/ }
@@ -47,7 +47,7 @@
   teaser: Early pension access stimulates like fiscal policy, but poorer households foot the bill.
   url: /files/schneider-moran-household-liquidity-policy.pdf
   coauthors:
-    - Patrick Moran
+    - { name: Patrick Moran, url: "https://sites.google.com/view/patrickmoran" }
   links:
     - { label: Appendix, url: /files/schneider-moran-household-liquidity-policy-appendix.pdf }
     - { label: Slides, url: /files/schneider-moran-household-liquidity-policy-slides.pdf }
@@ -67,7 +67,7 @@
   url: /files/sabet-schneider-nested-drift.pdf
   image: /images/thumbs/nested-drift.png
   coauthors:
-    - Soroush Sabet
+    - { name: Soroush Sabet, url: "https://ssabet.github.io/" }
   links:
     - { label: Code, url: https://github.com/SSabet/NestedDrift }
   abstract: >-
@@ -102,13 +102,13 @@
   title: Self-Control and Early Withdrawal from Retirement Accounts
   year: 2026
   status: forthcoming
-  journal: National Tax Journal
+  journal: NTJ
   featured: true
   image: /images/thumbs/self-control-early-withdrawal.png
   teaser: Those with the most self-control issues are 60% more likely to withdraw early.
   url: /files/moran-schneider-self-control-early-withdrawal.pdf
   coauthors:
-    - Patrick Moran
+    - { name: Patrick Moran, url: "https://sites.google.com/view/patrickmoran" }
   venue: Forthcoming, *National Tax Journal*
   links:
     - { label: Appendix, url: /files/moran-schneider-self-control-early-withdrawal-appendix.pdf }
