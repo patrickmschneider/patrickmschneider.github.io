@@ -1,7 +1,7 @@
 /* Direction B, "Figure-led": all sans (IBM Plex Sans + Plex Mono for labels).
    Imperial Blue (#0000cd, from imperial.ac.uk's stylesheet) is used ONLY in the top header bar.
    Everything else is warm off-white with a deep teal accent. The hero is a split banner:
-   a horizontal fade from warm off-white (text) to soft grey (photo), with the photo as a cut-out. */
+   a horizontal fade from light (text) into the photo's own studio grey (photo). */
 @import '@fontsource/ibm-plex-sans/400.css';
 @import '@fontsource/ibm-plex-sans/400-italic.css';
 @import '@fontsource/ibm-plex-sans/500.css';
@@ -13,9 +13,9 @@
 
 :root {
   --imperial-blue: #0000cd;
-  /* Hero fade: light behind the text (left) to grey behind the photo (right). The darkest end is
-     deliberately lighter than the photo's own studio grey (#aeafb4); the photo is a transparent cut-out. */
-  --band-dark: #c9cacf;
+  /* Hero fade: light behind the text (left) to the photo's own studio grey (right). */
+  --band-light: #eeeeef;
+  --band-photo: #aeafb4;
 
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
@@ -24,7 +24,6 @@
   --body-size: 1rem;
 
   --bg: #faf9f6;
-  --hero-bg: #f3f1ec;
   --text: #16181c;
   --text-soft: #2d3138;
   --muted: #61666e;
@@ -45,7 +44,6 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #121315;
-    --hero-bg: #1a1b1e;
     --text: #e8e7e4;
     --text-soft: #cfcdc8;
     --muted: #999ca2;
@@ -56,8 +54,10 @@
     --tint: #16232d;
     --chip-border: #2c3d4a;
     --card: #1a1b1e;
-    --band-dark: #34363b;
+    --band-light: #1a1b1e;
+    --band-photo: #55565a;
   }
+  .band-photo { filter: brightness(0.5); }
   .feature-figure { background: #f2f2f2; }
 }
 
@@ -84,20 +84,23 @@
 .site-header nav a[aria-current='page'] { color: #fff; border-bottom-color: #fff; }
 .site-header a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-/* Hero: horizontal fade, photo cut-out sitting on it. */
+/* Hero: horizontal fade into the photo's backdrop grey; the photo's edges fade so it has no visible border. */
 main { padding-top: 0; }
 .band {
-  background: linear-gradient(90deg, var(--hero-bg) 0%, var(--hero-bg) 38%, var(--band-dark) 100%);
+  background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 42%, var(--band-photo) 72%, var(--band-photo) 100%);
   border-bottom: 1px solid var(--rule);
   overflow: hidden;
 }
-.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 3rem; align-items: end; }
+.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 2rem; align-items: end; }
 .band .intro-text { padding-block: 4rem 3.75rem; max-width: 40rem; }
 .band-photo {
   width: 100%;
   aspect-ratio: 790 / 800;
   object-fit: cover;
   margin-top: 2.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
+  mask-composite: intersect;
 }
 
 .band .tagline { color: var(--text-soft); margin-bottom: 1.5rem; }
@@ -108,12 +111,14 @@ main { padding-top: 0; }
 .news { max-width: 46rem; }
 body:not(.is-home) main { padding-top: 3.5rem; }
 
-/* Narrow screens: photo on top, fade runs top (grey) to bottom (light) */
+/* Narrow screens: photo on top, fading down into the band */
 @media (max-width: 52rem) {
-  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-dark) 0, var(--hero-bg) 26rem); }
+  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 13rem, var(--band-light) 24rem); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
     order: -1; width: var(--photo-w); justify-self: center; margin-top: 1rem;
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
   }
   .band .intro-text { padding-block: 2rem 2.5rem; }
   .statement { font-size: 1.15rem; }
