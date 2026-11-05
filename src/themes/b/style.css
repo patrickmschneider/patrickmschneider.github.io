@@ -1,7 +1,7 @@
 /* Direction B, "Figure-led": all sans (IBM Plex Sans + Plex Mono for labels).
    Imperial Blue (#0000cd, from imperial.ac.uk's stylesheet) is used ONLY in the top header bar.
    Everything else is warm off-white with a deep teal accent. The hero is a split banner:
-   text on warm white, photo on a panel in its own backdrop grey so it sits in seamlessly. */
+   a horizontal fade from warm off-white (text) to soft grey (photo), with the photo as a cut-out. */
 @import '@fontsource/ibm-plex-sans/400.css';
 @import '@fontsource/ibm-plex-sans/400-italic.css';
 @import '@fontsource/ibm-plex-sans/500.css';
@@ -13,7 +13,9 @@
 
 :root {
   --imperial-blue: #0000cd;
-  --photo-grey: #e3e3e6; /* the headshot backdrop, lightened (original studio grey was #aeafb4) */
+  /* Hero fade: light behind the text (left) to grey behind the photo (right). The darkest end is
+     deliberately lighter than the photo's own studio grey (#aeafb4); the photo is a transparent cut-out. */
+  --band-dark: #c9cacf;
 
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
@@ -54,6 +56,7 @@
     --tint: #16232d;
     --chip-border: #2c3d4a;
     --card: #1a1b1e;
+    --band-dark: #34363b;
   }
   .feature-figure { background: #f2f2f2; }
 }
@@ -81,11 +84,10 @@
 .site-header nav a[aria-current='page'] { color: #fff; border-bottom-color: #fff; }
 .site-header a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
-/* Hero: split banner. The hard colour stop sits exactly at the photo's left edge. */
+/* Hero: horizontal fade, photo cut-out sitting on it. */
 main { padding-top: 0; }
 .band {
-  --photo-left: min(calc(50% + var(--wide) / 2 - 1.5rem - var(--photo-w)), calc(100% - 1.5rem - var(--photo-w)));
-  background: linear-gradient(90deg, var(--hero-bg) 0, var(--hero-bg) var(--photo-left), var(--photo-grey) var(--photo-left), var(--photo-grey) 100%);
+  background: linear-gradient(90deg, var(--hero-bg) 0%, var(--hero-bg) 38%, var(--band-dark) 100%);
   border-bottom: 1px solid var(--rule);
   overflow: hidden;
 }
@@ -96,10 +98,6 @@ main { padding-top: 0; }
   aspect-ratio: 790 / 800;
   object-fit: cover;
   margin-top: 2.5rem;
-  /* fade only the top and right edges into the grey panel; the left edge stays crisp against the blue */
-  -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 14%), linear-gradient(to bottom, transparent 0%, #000 12%);
-  mask-image: linear-gradient(to left, transparent 0%, #000 14%), linear-gradient(to bottom, transparent 0%, #000 12%);
-  mask-composite: intersect;
 }
 
 .band .tagline { color: var(--text-soft); margin-bottom: 1.5rem; }
@@ -110,14 +108,12 @@ main { padding-top: 0; }
 .news { max-width: 46rem; }
 body:not(.is-home) main { padding-top: 3.5rem; }
 
-/* Narrow screens: photo panel on top, blue text block below */
+/* Narrow screens: photo on top, fade runs top (grey) to bottom (light) */
 @media (max-width: 52rem) {
-  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--photo-grey) 0, var(--photo-grey) calc(var(--photo-w) * 800 / 790 + 1rem), var(--hero-bg) calc(var(--photo-w) * 800 / 790 + 1rem)); }
+  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-dark) 0, var(--hero-bg) 26rem); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
     order: -1; width: var(--photo-w); justify-self: center; margin-top: 1rem;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%);
   }
   .band .intro-text { padding-block: 2rem 2.5rem; }
   .statement { font-size: 1.15rem; }
