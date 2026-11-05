@@ -58,11 +58,11 @@
     --chip-text: #d6d4cf;
     --card: #1a1b1e;
     --band-light: #1a1b1e;
-    --band-photo: #88898d; /* the photo's grey (#afb0b5) after the brightness(.78) filter below */
     --badge-quiet: #2a2c30;
   }
-  .band-photo { filter: brightness(0.78); }
   .feature-figure { background: #f2f2f2; border-color: #2a2b2f; }
+  /* fade reaches the photo's grey before the photo starts, so its faded edges don't sit on dark */
+  .band { background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 30%, var(--band-photo) 56%, var(--band-photo) 100%); }
   .feature-figure img { opacity: 0.92; }
 }
 

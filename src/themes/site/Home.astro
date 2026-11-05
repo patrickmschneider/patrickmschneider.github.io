@@ -8,6 +8,13 @@ import { profile, papers, news, liveTools, inlineMd, paperStatus } from '../../l
 // Which headshot to show (files in public/images: <photo>.jpg and <photo>-860.jpg).
 interface Props { photo?: string }
 const { photo = 'headshot' } = Astro.props;
+// Content hash in the URL so browsers fetch the new photo whenever the file changes.
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+const v = (file: string) =>
+  createHash('md5').update(readFileSync(`public/images/${file}`)).digest('hex').slice(0, 8);
+const big = `/images/${photo}.jpg?v=${v(`${photo}.jpg`)}`;
+const small = `/images/${photo}-860.jpg?v=${v(`${photo}-860.jpg`)}`;
 const featured = papers.filter((p) => p.featured);
 ---
 
@@ -16,8 +23,8 @@ const featured = papers.filter((p) => p.featured);
     <Intro />
     <img
       class="band-photo"
-      src={`/images/${photo}.jpg`}
-      srcset={`/images/${photo}-860.jpg 860w, /images/${photo}.jpg 1600w`}
+      src={big}
+      srcset={`${small} 860w, ${big} 1600w`}
       sizes="(max-width: 52rem) 17rem, 26rem"
       alt={`Photo of ${profile.name}`}
       width="1600"
