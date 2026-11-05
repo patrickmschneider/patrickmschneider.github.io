@@ -1,5 +1,8 @@
-/* Direction B, "Figure-led": all sans (IBM Plex Sans + Plex Mono for labels), teal-blue accent,
-   and a hero band whose grey matches the headshot's studio backdrop so the photo blends in. */
+/* Direction B, "Figure-led": all sans (IBM Plex Sans + Plex Mono for labels).
+   Colours follow Imperial's palette (from the live imperial.ac.uk stylesheet):
+   Imperial Blue #0000cd, navy #000040, lavender #e6e6fa, light blue #00aceb.
+   The hero is a split banner: Imperial Blue behind the text, and on the right a panel in the
+   photo's own backdrop grey so the headshot sits in it seamlessly. */
 @import '@fontsource/ibm-plex-sans/400.css';
 @import '@fontsource/ibm-plex-sans/400-italic.css';
 @import '@fontsource/ibm-plex-sans/500.css';
@@ -10,56 +13,57 @@
 @import '../common.css';
 
 :root {
+  --imperial-blue: #0000cd;
+  --imperial-navy: #000040;
+  --photo-grey: #aeafb4; /* sampled from the headshot backdrop */
+
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
   --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
   --font-meta: 'IBM Plex Mono', ui-monospace, monospace;
   --body-size: 1rem;
 
-  --bg: #f7f7f8;
-  --text: #0e1116;
-  --text-soft: #2a3038;
-  --muted: #5f6873;
-  --rule: #e3e5e8;
-  --accent: #0a5c8a;
-  --hover: #07476b;
+  --bg: #f7f7fc;
+  --text: #12122a;
+  --text-soft: #2c2d45;
+  --muted: #5c5e72;
+  --rule: #e3e3f0;
+  --accent: var(--imperial-blue);
+  --hover: var(--imperial-navy);
   --on-accent: #ffffff;
-  --tint: #e9f1f7;
-  --chip-border: #cbd6df;
+  --tint: #ececfb;
+  --chip-border: #cfd0ef;
   --card: #ffffff;
-
-  /* Hero band: light where the text sits, fading to the photo's backdrop grey (#aeafb4). */
-  --band-light: #e8e9eb;
-  --band-photo: #aeafb4;
+  --highlight: #00aceb;
 
   --measure: 46rem;
   --wide: 70rem;
   --radius: 4px;
+  --photo-w: 26rem;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0f1215;
-    --text: #e6e9ec;
-    --text-soft: #c9ced4;
-    --muted: #8d97a1;
-    --rule: #252a30;
-    --accent: #6cb6e0;
-    --hover: #9bd0ee;
-    --on-accent: #0f1215;
-    --tint: #16232d;
-    --chip-border: #2c3d4a;
-    --card: #161a1e;
-    --band-light: #171a1e;
-    --band-photo: #55565a;
+    --bg: #0d0d1f;
+    --text: #e8e8f4;
+    --text-soft: #c8c9dc;
+    --muted: #9092ab;
+    --rule: #24243c;
+    --accent: #8f9bff;
+    --hover: #b8c0ff;
+    --on-accent: #0d0d1f;
+    --tint: #18183a;
+    --chip-border: #2e2f5a;
+    --card: #141428;
   }
-  .band-photo { filter: brightness(0.5); }
-  .feature-figure { background: #f2f4f6; }
+  .band { filter: brightness(0.82); }
+  .feature-figure { background: #f2f2f8; }
 }
 
 /* Type: sans throughout, tight headings, mono for labels and metadata */
 .label, .feature-kicker, .chip { font-family: var(--font-meta); letter-spacing: 0.04em; }
-.label { font-size: 0.72rem; font-weight: 500; border-top: 0; padding-top: 0; color: var(--accent); }
+.label { font-size: 0.72rem; font-weight: 500; border-top: 0; padding-top: 0; color: var(--accent); display: flex; align-items: center; gap: 0.6rem; }
+.label::before { content: ''; width: 1.25rem; height: 2px; background: var(--highlight); }
 .chip { font-size: 0.72rem; letter-spacing: 0.02em; background: var(--card); }
 .page-title { font-weight: 600; letter-spacing: -0.025em; }
 .name { font-size: clamp(2.5rem, 5.5vw, 3.4rem); font-weight: 600; letter-spacing: -0.03em; }
@@ -68,46 +72,60 @@
 .paper-title { font-size: 1.125rem; }
 .feature-title { font-size: 1.1rem; }
 .site-name { font-size: 1.05rem; letter-spacing: -0.01em; }
-.feature-figure { border-color: var(--rule); }
-.feature-card .feature-figure, .tool-card { box-shadow: 0 1px 2px rgb(15 20 30 / 0.04); }
+.feature-card .feature-figure, .tool-card { box-shadow: 0 1px 3px rgb(18 18 60 / 0.06); }
 .tool-card { background: var(--card); }
+.site-header { background: #fff; }
+@media (prefers-color-scheme: dark) { .site-header { background: var(--bg); } }
 
-/* Hero band: intro text left, large photo right, bottom-aligned and blended into the backdrop */
+/* Hero: split banner. The hard colour stop sits exactly at the photo's left edge. */
 main { padding-top: 0; }
 .band {
-  background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 42%, var(--band-photo) 72%, var(--band-photo) 100%);
-  border-bottom: 1px solid var(--rule);
+  --photo-left: min(calc(50% + var(--wide) / 2 - 1.5rem - var(--photo-w)), calc(100% - 1.5rem - var(--photo-w)));
+  background: linear-gradient(90deg, var(--imperial-blue) 0, var(--imperial-blue) var(--photo-left), var(--photo-grey) var(--photo-left), var(--photo-grey) 100%);
+  color: #fff;
   overflow: hidden;
 }
-.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) 26rem; gap: 2rem; align-items: end; }
-.band .intro-text { padding-block: 4rem 3.5rem; max-width: 40rem; }
+.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 3rem; align-items: end; }
+.band .intro-text { padding-block: 4rem 3.75rem; max-width: 40rem; }
 .band-photo {
   width: 100%;
   aspect-ratio: 790 / 800;
   object-fit: cover;
   margin-top: 2.5rem;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
-  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
+  /* fade only the top and right edges into the grey panel; the left edge stays crisp against the blue */
+  -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 14%), linear-gradient(to bottom, transparent 0%, #000 12%);
+  mask-image: linear-gradient(to left, transparent 0%, #000 14%), linear-gradient(to bottom, transparent 0%, #000 12%);
   mask-composite: intersect;
 }
-.band .tagline { margin-bottom: 1.5rem; color: var(--text-soft); }
-.band .statement { margin-bottom: 1rem; }
-.band .bio { color: var(--text-soft); }
+
+/* Text and buttons on the blue */
+.band .name { color: #fff; }
+.band .tagline { color: rgb(255 255 255 / 0.82); margin-bottom: 1.5rem; }
+.band .tagline a { color: #fff; text-decoration-color: rgb(255 255 255 / 0.5); }
+.band .statement { color: #fff; margin-bottom: 1rem; }
+.band .bio { color: rgb(255 255 255 / 0.85); }
+.band .bio a { color: #fff; }
+.band .btn-solid { background: #fff; color: var(--imperial-blue); border-color: #fff; }
+.band .btn-solid:hover { background: #e6e6fa; border-color: #e6e6fa; color: var(--imperial-navy); }
+.band .btn-outline { color: #fff; border-color: rgb(255 255 255 / 0.6); }
+.band .btn-outline:hover { background: rgb(255 255 255 / 0.12); color: #fff; border-color: #fff; }
+.band .social a { color: rgb(255 255 255 / 0.78); }
+.band .social a:hover { color: #fff; }
+.band a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 .block .label + .feature-grid { margin-bottom: 3rem; }
-.news-block { max-width: var(--wide); }
 .news { max-width: 46rem; }
 body:not(.is-home) main { padding-top: 3.5rem; }
 
-/* Narrow screens: photo on top, fading down into the band */
+/* Narrow screens: photo panel on top, blue text block below */
 @media (max-width: 52rem) {
-  .band { background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 13rem, var(--band-light) 24rem); }
+  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--photo-grey) 0, var(--photo-grey) calc(var(--photo-w) * 800 / 790 + 1rem), var(--imperial-blue) calc(var(--photo-w) * 800 / 790 + 1rem)); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
-    order: -1; width: 17rem; justify-self: center; margin-top: 1rem;
-    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    order: -1; width: var(--photo-w); justify-self: center; margin-top: 1rem;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 12%);
   }
-  .band .intro-text { padding-block: 0.5rem 2.5rem; }
+  .band .intro-text { padding-block: 2rem 2.5rem; }
   .statement { font-size: 1.15rem; }
 }
