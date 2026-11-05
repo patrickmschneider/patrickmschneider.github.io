@@ -4,23 +4,24 @@ import PaperEntry from '../components/PaperEntry.astro';
 import { papers } from '../lib/data';
 
 const sections = [
-  { key: 'working', heading: 'Working papers' },
-  { key: 'published', heading: 'Publications' },
-  { key: 'prephd', heading: 'Pre-PhD publications & policy work' },
+  { key: 'working', id: 'working-papers', heading: 'Working papers' },
+  { key: 'published', id: 'publications', heading: 'Publications' },
+  { key: 'prephd', id: 'earlier-work', heading: 'Earlier work' },
 ] as const;
+const present = sections.filter((s) => papers.some((p) => p.section === s.key));
 ---
 
 <Base title="Research">
-  <div class="wrap wide reading">
+  <div class="wrap wide research">
     <h1 class="page-title">Research</h1>
-    {sections.map((s) => {
-      const list = papers.filter((p) => p.section === s.key);
-      return list.length > 0 && (
-        <section class="paper-section">
-          <h2 class="label">{s.heading}</h2>
-          {list.map((p) => <PaperEntry paper={p} />)}
-        </section>
-      );
-    })}
+    <nav class="jump" aria-label="Sections on this page">
+      {present.map((s) => <a href={`#${s.id}`}>{s.heading}</a>)}
+    </nav>
+    {present.map((s) => (
+      <section class:list={['paper-section', { 'no-thumbs': !papers.some((p) => p.section === s.key && p.image) }]} id={s.id} aria-labelledby={`${s.id}-h`}>
+        <h2 class="label" id={`${s.id}-h`}>{s.heading}</h2>
+        {papers.filter((p) => p.section === s.key).map((p) => <PaperEntry paper={p} />)}
+      </section>
+    ))}
   </div>
 </Base>

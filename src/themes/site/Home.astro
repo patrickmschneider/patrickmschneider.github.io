@@ -16,6 +16,7 @@ const v = (file: string) =>
   createHash('md5').update(readFileSync(`public/images/${file}`)).digest('hex').slice(0, 8);
 const big = `/images/${photo}.jpg?v=${v(`${photo}.jpg`)}`;
 const small = `/images/${photo}-860.jpg?v=${v(`${photo}-860.jpg`)}`;
+const mid = `/images/${photo}-1000.jpg?v=${v(`${photo}-1000.jpg`)}`;
 
 const featured = papers.filter((p) => p.featured);
 ---
@@ -24,7 +25,7 @@ const featured = papers.filter((p) => p.featured);
   <div class="wrap wide band-inner">
     <Intro>
       {liveTools.length > 0 && (
-        <p class="statement tools-line">
+        <p class="tools-line">
           I also build small public tools:{' '}
           {liveTools.map((t, i) => (
             <>
@@ -38,8 +39,8 @@ const featured = papers.filter((p) => p.featured);
     <img
       class="band-photo"
       src={big}
-      srcset={`${small} 860w, ${big} 1600w`}
-      sizes="(max-width: 64rem) 17rem, 28rem"
+      srcset={`${small} 860w, ${mid} 1000w, ${big} 1600w`}
+      sizes="(max-width: 64rem) 13rem, 28rem"
       alt={`Photo of ${profile.name}`}
       width="1600"
       height="1600"
@@ -52,7 +53,7 @@ const featured = papers.filter((p) => p.featured);
   <h2 class="label">Research</h2>
   <ul class="feature-grid">
     {featured.map((p) => (
-      <FeatureCard href={p.url ?? page('/research/')} title={p.title} image={p.image} badge={paperStatus(p)} text={p.teaser} />
+      <FeatureCard href={p.url ?? page('/research/')} title={p.title} image={p.image} alt={`Figure from ${p.title}`} badge={paperStatus(p)} text={p.teaser} />
     ))}
   </ul>
   <p class="more"><a href={page('/research/')}>All research →</a></p>

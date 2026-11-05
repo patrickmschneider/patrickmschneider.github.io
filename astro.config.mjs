@@ -8,7 +8,9 @@ const theme = process.env.THEME ?? '';
 const preview = theme !== '';
 
 export default defineConfig({
-  site: 'https://www.patrickmschneider.com',
+  // Canonical address used for link previews and search engines. Switch to
+  // 'https://www.patrickmschneider.com' once the domain points at this site.
+  site: 'https://patrickmschneider.github.io',
   base: preview ? `/preview-${theme}` : '/',
   outDir: preview ? `dist/preview-${theme}` : 'dist',
   trailingSlash: 'ignore',

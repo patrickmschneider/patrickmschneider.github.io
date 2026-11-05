@@ -1,4 +1,6 @@
 ---
+// One paper on the Research page: optional thumbnail | title (the main link), authors, venue,
+// secondary links and abstract toggle | year on the right.
 import { inlineMd, slug, type Paper } from '../lib/data';
 
 interface Props {
@@ -8,12 +10,15 @@ const { paper } = Astro.props;
 const id = slug(paper.title);
 const n = paper.coauthors.length;
 const sep = (i: number) => (i < n - 2 ? ', ' : i === n - 2 ? (n > 2 ? ', and ' : ' and ') : '');
+const hasExtras = paper.links.length > 0 || !!paper.abstract;
 ---
 
-<article class="paper" id={id}>
-  <div class="paper-meta">
-    {paper.year && <span class="paper-year">{paper.year}</span>}
-  </div>
+<article class:list={['paper', { 'has-thumb': !!paper.image }]} id={id}>
+  {paper.image && (
+    <a class="paper-thumb" href={paper.url ?? `#${id}`} tabindex="-1" aria-hidden="true">
+      <img src={paper.image} alt="" loading="lazy" width="1200" height="675" />
+    </a>
+  )}
   <div class="paper-body">
     <h3 class="paper-title">
       {paper.url ? <a href={paper.url}>{paper.title}</a> : paper.title}
@@ -35,18 +40,20 @@ const sep = (i: number) => (i < n - 2 ? ', ' : i === n - 2 ? (n > 2 ? ', and ' :
       </p>
     )}
 
-    <div class="paper-links">
-      {paper.url && <a class="chip" href={paper.url}>Paper</a>}
-      {paper.links.map((l) => <a class="chip" href={l.url}>{l.label}</a>)}
-      {paper.abstract && (
-        <button type="button" class="chip abstract-toggle" aria-expanded="false" aria-controls={`${id}-abstract`}>
-          Abstract
-        </button>
-      )}
-    </div>
+    {hasExtras && (
+      <p class="paper-links">
+        {paper.links.map((l) => <a class="paper-link" href={l.url}>{l.label}</a>)}
+        {paper.abstract && (
+          <button type="button" class="paper-link abstract-toggle" aria-expanded="false" aria-controls={`${id}-abstract`}>
+            Abstract
+          </button>
+        )}
+      </p>
+    )}
 
     {paper.abstract && (
       <p class="paper-abstract" id={`${id}-abstract`} hidden>{paper.abstract}</p>
     )}
   </div>
+  {paper.year && <span class="paper-year">{paper.year}</span>}
 </article>

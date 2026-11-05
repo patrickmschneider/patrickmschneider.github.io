@@ -13,13 +13,17 @@ interface Props {
   text?: string;
   /** Optional link to the source code */
   source?: string;
+  /** Description of the image for screen readers */
+  alt?: string;
+  /** Optional call-to-action text shown under the description, e.g. "Open tool" */
+  cta?: string;
 }
-const { href, title, image, badge, journal, date, text, source } = Astro.props;
+const { href, title, image, badge, journal, date, text, source, alt = '', cta } = Astro.props;
 ---
 
 <li class="feature-card">
   <div class="feature-figure">
-    {image && <img src={image} alt="" loading="lazy" />}
+    {image && <img src={image} alt={alt} loading="lazy" width="1200" height="675" />}
   </div>
   {(badge || journal || date) && (
     <p class="feature-kicker">
@@ -30,5 +34,10 @@ const { href, title, image, badge, journal, date, text, source } = Astro.props;
   )}
   <h3 class="feature-title"><a class="stretched" href={href}>{title}</a></h3>
   {text && <p class="feature-text">{text}</p>}
-  {source && <a class="feature-source" href={source}>Source on GitHub</a>}
+  {(cta || source) && (
+    <p class="feature-actions">
+      {cta && <span class="feature-cta" aria-hidden="true">{cta} →</span>}
+      {source && <a class="feature-source" href={source}>Source on GitHub</a>}
+    </p>
+  )}
 </li>

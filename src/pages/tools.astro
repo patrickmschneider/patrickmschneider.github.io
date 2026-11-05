@@ -10,7 +10,7 @@ import { tools, liveTools } from '../lib/data';
     {tools.intro && <p class="lede">{tools.intro}</p>}
     <ul class="feature-grid">
       {liveTools.map((t) => (
-        <FeatureCard href={t.url!} title={t.title} image={t.image} date={t.updated && `Updated ${t.updated}`} text={t.description} source={t.source} />
+        <FeatureCard href={t.url!} title={t.title} image={t.image} alt={`Screenshot of ${t.title}`} text={t.description} cta="Open tool" source={t.source} />
       ))}
     </ul>
   </div>

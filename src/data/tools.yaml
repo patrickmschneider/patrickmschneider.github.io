@@ -1,7 +1,6 @@
 # Tools page. Each tool is its own GitHub repo published with GitHub Pages,
 # so it is served at patrickmschneider.com/<repo-name>/ automatically.
-# Tools without a `url` are hidden. The "Updated" date comes from the latest commit
-# to the `source` repo, looked up when the site is built.
+# Tools without a `url` are hidden.
 intro: Small public tools on macro policy and the profession.
 
 tools:

@@ -63,7 +63,8 @@ Redirects for the old Google Sites addresses are in `astro.config.mjs` (`/home` 
 ## Design
 
 The look lives in `src/themes/`: `common.css` holds the shared structure and `site/` holds the design
-(colours, fonts, home-page layout). Imperial Blue is used only in the top bar.
+(colours, fonts, home-page layout). Imperial branding is light: the Imperial Business School logo in
+Imperial Blue and a thin blue rule along the top of the header.
 
 To try an alternative design without touching the live one, copy `site/` to e.g. `src/themes/x/`, edit it,
 and add `x` to `previews.txt`: it is then published at `/preview-x/` (hidden from search engines).
@@ -74,4 +75,9 @@ Preview locally with `THEME=x npx astro dev`.
 - `public/images/headshot.jpg` (1600px) and `headshot-860.jpg` are square crops of the studio original.
   The originals live in `images/` (not committed).
 - `public/images/thumbs/` holds the figure cards: tool screenshots and recoloured paper figures.
-- Tool "Updated" dates are looked up from each tool repo's latest commit when the site builds.
+- Paper thumbnails (`image:` in papers.yaml) appear on the Research page; featured papers also get a home-page card.
+
+## Switching the domain
+
+`site` in `astro.config.mjs` is the address used in link previews and for search engines. It is set to
+the github.io address for now; change it to `https://www.patrickmschneider.com` when the domain is switched.

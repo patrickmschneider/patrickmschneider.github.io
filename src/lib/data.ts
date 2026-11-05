@@ -105,29 +105,7 @@ export const papers = load('papers.yaml', z.array(paperSchema)).sort((a, b) => (
 export const teaching = load('teaching.yaml', teachingSchema);
 export const tools = load('tools.yaml', toolsSchema);
 export const news = load('news.yaml', newsSchema).news;
-/** Date of the latest commit to a tool's GitHub repo, fetched at build time ("Nov 2026"). */
-async function lastUpdated(source?: string): Promise<string | undefined> {
-  const repo = source?.match(/github\.com\/([^/]+\/[^/#?]+)/)?.[1];
-  if (!repo) return undefined;
-  try {
-    const headers: Record<string, string> = { Accept: 'application/vnd.github+json' };
-    if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
-    const res = await fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, {
-      headers,
-      signal: AbortSignal.timeout(8000),
-    });
-    if (!res.ok) return undefined;
-    const [latest] = (await res.json()) as { commit: { committer: { date: string } } }[];
-    const d = new Date(latest.commit.committer.date);
-    return d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric', timeZone: 'UTC' });
-  } catch {
-    return undefined; // offline or rate-limited: just omit the date
-  }
-}
-
-export const liveTools = await Promise.all(
-  tools.tools.filter((t) => t.url).map(async (t) => ({ ...t, updated: await lastUpdated(t.source) })),
-);
+export const liveTools = tools.tools.filter((t) => t.url);
 
 /** Publication status: explicit `status`, otherwise working papers are 'working' and the rest 'published'. */
 export function paperStatus(p: Paper): { kind: 'working' | 'forthcoming' | 'published'; label: string } {

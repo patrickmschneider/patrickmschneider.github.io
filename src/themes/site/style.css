@@ -1,5 +1,6 @@
-/* Site design: IBM Plex Sans throughout (Plex Mono only for dates and years).
-   Imperial Blue (#0000cd, from imperial.ac.uk's stylesheet) is the ONLY colour, used in the top bar.
+/* Site design: IBM Plex Sans throughout (tabular figures for years and dates).
+   Imperial branding is light-touch: the Imperial Business School logo in Imperial Blue (#0000cd)
+   and a thin Imperial Blue rule along the top of the header. No other colour.
    Everything else is neutral and airy: warm off-white, near-black text, soft rounded tiles and pills.
    The hero fades horizontally from light (text) into the photo's own studio grey (photo). */
 @import '@fontsource/ibm-plex-sans/300.css';
@@ -8,8 +9,6 @@
 @import '@fontsource/ibm-plex-sans/500.css';
 @import '@fontsource/ibm-plex-sans/600.css';
 @import '@fontsource/ibm-plex-sans/700.css';
-@import '@fontsource/ibm-plex-mono/400.css';
-@import '@fontsource/ibm-plex-mono/500.css';
 @import '../common.css';
 
 :root {
@@ -21,14 +20,14 @@
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
   --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
-  --font-meta: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-meta: 'IBM Plex Sans', system-ui, sans-serif;
   --body-size: 1rem;
 
   --bg: #faf9f6;
   --text: #1f2328;
   --text-soft: #2d3138;
   --muted: #6b7078;
-  --label: #8a8f96;
+  --label: #5f646c;  /* WCAG AA on the page background */
   --rule: #e7e4dd;
   --accent: #1f2328;
   --hover: #000000;
@@ -42,7 +41,7 @@
   --wide: 70rem;
   --radius: 4px;
   --photo-w: 28rem;      /* sized so the eyes line up with the first line of the description */
-  --photo-top: 1rem;     /* gap between the blue bar and the top of the photo */
+  --photo-top: 1rem;     /* gap between the header and the top of the photo */
   --hair-line: 0.10;     /* top of the hair sits at 10% of the photo's height */
   --hair-above: 0.5rem;  /* hair starts this far above the top of the name (tuned so the irises sit on the middle of the first text line) */
   --tile: #f1efea;
@@ -64,19 +63,15 @@
     --card: #1a1b1e;
     --band-light: #1a1b1e;
     --badge-quiet: #2a2c30;
-    --label: #8d9096;
+    --label: #a3a6ac;
   }
-  .feature-figure { background: #f1efea; }
-  .badge-working { background: #2a2c30; color: #c9ccd1; }
-  .badge-forthcoming { background: #26332b; color: #c4dbc9; }
-  .badge-published { background: #262d39; color: #c6d0e0; }
-  /* fade reaches the photo's grey before the photo starts, so its faded edges don't sit on dark */
-  .band { background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 40%, var(--band-photo) 62%, var(--band-photo) 100%); }
-  .feature-figure img { opacity: 0.92; }
 }
 
 /* Type: sans throughout; mono only for dates/years (set in common.css via --font-meta) */
-.label { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; border-top: 0; padding-top: 0; color: var(--label); margin-bottom: 1.75rem; }
+.label { font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; border-top: 0; padding-top: 0; color: var(--label); margin-bottom: 1.75rem; }
+.paper-year, .course-years, .news-date { font-variant-numeric: tabular-nums; }
+/* Visible keyboard focus everywhere */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--imperial-blue); outline-offset: 3px; border-radius: 2px; }
 .chip, .badge { font-family: var(--font-ui); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.02em; }
 .chip { background: var(--card); color: var(--chip-text); }
 .chip:hover { color: var(--text); }
@@ -87,11 +82,14 @@
 .paper-title { font-weight: 600; letter-spacing: -0.01em; font-size: 1.125rem; }
 .feature-title { font-weight: 500; letter-spacing: -0.005em; font-size: 1.0625rem; }
 .site-name { font-size: 1.05rem; letter-spacing: -0.01em; }
-/* Calm figure tiles: soft background, rounded, no frame or shadow */
+/* Figure tiles: one consistent style for papers and tools: white, hairline border, rounded */
 .feature-grid { gap: 3rem; }
-.feature-figure { background: var(--tile); border: 0; border-radius: 10px; margin-bottom: 1.25rem; }
-.feature-figure img { padding: 0.5rem; mix-blend-mode: multiply; }
-.feature-card:hover .feature-figure { border: 0; background: #ebe8e1; }
+.feature-figure { background: #fff; border: 1px solid var(--rule); border-radius: 10px; margin-bottom: 1.25rem; box-shadow: none; }
+.feature-figure img { padding: 0.35rem; }
+.feature-card:hover .feature-figure { border-color: #cfcbc2; }
+.feature-actions { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin: 0.75rem 0 0; font-size: 0.875rem; }
+.feature-cta { font-weight: 500; color: var(--text); }
+.feature-source { margin: 0; font-size: 0.875rem; }
 .feature-text { color: var(--muted); }
 /* Status badges: soft pills, distinguished by label and a faint tint */
 .badge { border: 0; border-radius: 999px; padding: 0.28rem 0.65rem; font-size: 0.72rem; letter-spacing: 0.01em; }
@@ -102,27 +100,23 @@
 .btn { border-radius: 999px; padding: 0.55rem 1.25rem; font-size: 0.9375rem; }
 .more { font-size: 0.9375rem; margin-top: 2.25rem; }
 .more a { color: var(--text-soft); }
-.statement.tools-line { margin-top: 0.75rem; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); }
-.tools-line a { color: inherit; }
-.tools-line a { text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
+.band .tools-line { margin: 0.75rem 0 0; font-size: 0.9375rem; line-height: 1.6; color: var(--muted); max-width: 36rem; }
+.tools-line a { color: inherit; text-decoration-color: color-mix(in srgb, currentColor 45%, transparent); }
 .tools-line a:hover { color: var(--text); }
 
-/* Top bar: the one place Imperial Blue appears. Deliberately NOT sticky: Safari tints its own
-   toolbar to match anything pinned to the top of the page. */
-.site-header { border-bottom: 0; }
-.site-header-bar { background: var(--imperial-blue); }
-.site-header .site-name, .site-header .site-name:hover { color: #fff; font-weight: 500; }
-.site-header .wrap { align-items: center; }
-.org-logo { display: block; padding-left: 1rem; border-left: 1px solid rgb(255 255 255 / 0.35); }
-.org-logo img { height: 1.7rem; width: auto; }
-@media (max-width: 34rem) { .org-logo img { height: 1.6rem; } .site-header .wrap { row-gap: 0.75rem; } }
+/* Header: light, with a thin Imperial Blue rule on top and the logo in Imperial Blue.
+   Deliberately NOT sticky: Safari tints its toolbar to match anything pinned to the top. */
+.site-header { border-top: 3px solid var(--imperial-blue); border-bottom: 1px solid var(--rule); background: var(--bg); }
+.site-header .wrap { align-items: center; padding-block: 0.7rem; }
+.site-header .site-name, .site-header .site-name:hover { color: var(--text); font-weight: 500; }
 .is-home .site-name { visibility: visible; }
-.site-header nav a { color: rgb(255 255 255 / 0.8); }
-.site-header nav a:hover { color: #fff; }
-.site-header .wrap { padding-block: 0.95rem; }
-.site-header nav a { padding-block: 0.375rem; }
-.site-header nav a[aria-current='page'] { color: #fff; border-bottom-color: #fff; }
-.site-header a:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.org-logo { display: block; padding-left: 1rem; border-left: 1px solid var(--rule); }
+.org-logo img { height: 1.6rem; width: auto; }
+.site-header nav { gap: 1.75rem; }
+.site-header nav a { color: var(--text-soft); font-size: 0.9375rem; font-weight: 500; padding-block: 0.375rem; }
+.site-header nav a:hover { color: var(--text); }
+.site-header nav a[aria-current='page'] { color: var(--text); border-bottom-color: var(--imperial-blue); }
+@media (max-width: 34rem) { .org-logo img { height: 1.45rem; } .site-header .wrap { row-gap: 0.4rem; } .site-header nav { gap: 1.25rem; } }
 
 /* Hero: horizontal fade into the photo's backdrop grey; the photo's edges fade so it has no visible border. */
 main { padding-top: 0; }
@@ -162,15 +156,61 @@ body:not(.is-home) main { padding-top: 3.5rem; }
 
 /* Narrower screens: photo on top, fading down into the band */
 @media (max-width: 64rem) {
-  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 10rem, var(--band-light) 19rem); }
+  .band { --photo-w: 13rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 8rem, var(--band-light) 15rem); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
     order: -1; width: var(--photo-w); justify-self: center; margin-top: 1rem;
     -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
     mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
   }
-  .band .intro-text { padding-top: 2rem; padding-bottom: 3rem; }
+  .band .intro-text { padding-top: 1.5rem; padding-bottom: 2.75rem; }
   .statement { font-size: 1.125rem; }
   .block { margin-top: 4rem; }
   .band + .block { margin-top: 3.5rem; }
+}
+
+/* Research page: thumbnail | title, authors, venue, secondary links | year (right) */
+.research .page-title { margin-bottom: 1rem; }
+.jump { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; margin: 0 0 3.5rem; font-size: 0.9375rem; }
+.jump a { color: var(--muted); text-decoration: none; }
+.jump a:hover { color: var(--text); text-decoration: underline; }
+.paper-section { margin-bottom: 4rem; scroll-margin-top: 1rem; }
+.paper { display: grid; grid-template-columns: 8.5rem minmax(0, 46rem) 1fr; column-gap: 2rem; margin: 0; padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+.paper-section .label + .paper { border-top: 0; padding-top: 0.25rem; }
+.paper-thumb { grid-column: 1; align-self: start; display: block; background: #fff; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; aspect-ratio: 16 / 9; }
+.paper-thumb img { width: 100%; height: 100%; object-fit: contain; padding: 0.2rem; }
+.paper-body { grid-column: 2; }
+.paper-year { grid-column: 3; justify-self: end; font-size: 0.9375rem; font-weight: 500; color: var(--muted); padding-top: 0.15rem; }
+.paper-title { font-size: 1.125rem; font-weight: 500; line-height: 1.35; }
+.paper-title a { color: var(--text); text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 25%, transparent); text-underline-offset: 0.2em; }
+.paper-title a:hover { text-decoration-color: currentColor; }
+.paper-links { display: flex; flex-wrap: wrap; gap: 0.3rem 1.25rem; margin: 0.6rem 0 0; font-size: 0.875rem; }
+.paper-link { font: inherit; color: var(--muted); background: none; border: 0; padding: 0; cursor: pointer; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 0.2em; }
+.paper-link:hover { color: var(--text); text-decoration-color: currentColor; }
+.paper-abstract { max-width: 46rem; }
+/* sections without any figures drop the thumbnail column */
+.no-thumbs .paper { grid-template-columns: minmax(0, 46rem) 1fr; }
+.no-thumbs .paper-body { grid-column: 1; }
+.no-thumbs .paper-year { grid-column: 2; }
+@media (max-width: 48rem) {
+  .paper { grid-template-columns: minmax(0, 1fr) auto; column-gap: 1rem; }
+  .paper-thumb { display: none; }
+  .paper-body { grid-column: 1; }
+  .paper-year { grid-column: 2; }
+}
+
+/* Dark mode element overrides (kept last so they win over the light rules above) */
+@media (prefers-color-scheme: dark) {
+  .site-header { background: var(--bg); }
+  .feature-figure, .paper-thumb { background: #e6e4df; border-color: transparent; }
+  .feature-figure img, .paper-thumb img { mix-blend-mode: multiply; opacity: 0.95; }
+  .feature-card:hover .feature-figure { border-color: transparent; background: #f1efea; }
+  .badge-working { background: #2a2c30; color: #c9ccd1; }
+  .badge-forthcoming { background: #26332b; color: #c4dbc9; }
+  .badge-published { background: #262d39; color: #c6d0e0; }
+  /* fade reaches the photo's grey before the photo starts, so its faded edges don't sit on dark */
+  .band { background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 40%, var(--band-photo) 62%, var(--band-photo) 100%); }
+}
+@media (prefers-color-scheme: dark) and (max-width: 64rem) {
+  .band { background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 8rem, var(--band-light) 15rem); }
 }

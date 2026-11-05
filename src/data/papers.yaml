@@ -12,7 +12,7 @@
 # links:    extra buttons (appendix, slides, code, blog, …)
 # abstract: optional; shown in a collapsible box
 # featured: true puts the paper on the home page ("Selected research")
-# image:    figure shown on the home-page card (put files in public/images/thumbs/)
+# image:    figure thumbnail (Research page, and home-page card if featured; files in public/images/thumbs/)
 # teaser:   one line shown under the title on the home-page card
 
 - section: working
@@ -64,7 +64,8 @@
 - section: working
   title: "The Nested-Drift Algorithm: A New Solution Approach to Continuous Time Problems with Multiple Endogenous State Variables"
   year: 2024
-  url: https://github.com/SSabet/NestedDrift/blob/main/Sabet%20%26%20Schneider%20-%20Nested%20Drift.pdf?raw=true
+  url: /files/sabet-schneider-nested-drift.pdf
+  image: /images/thumbs/nested-drift.png
   coauthors:
     - Soroush Sabet
   links:
@@ -84,6 +85,7 @@
   title: "Yield to Temptation: A Comparison of Present-Biased Preferences in Continuous Time"
   year: 2025
   url: /files/schneider-yield-to-temptation.pdf
+  image: /images/thumbs/yield-to-temptation.png
   abstract: >-
     I compare two ways of modelling present bias in dynamic consumption-saving problems:
     quasi-hyperbolic discounting (QHD) and temptation preferences. I show how to implement temptation
