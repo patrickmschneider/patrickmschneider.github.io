@@ -16,7 +16,7 @@
   --imperial-blue: #0000cd;
   /* Hero fade: light behind the text (left) to the photo's own studio grey (right). */
   --band-light: #eeeeef;
-  --band-photo: #aeafb4;
+  --band-photo: #babbbe; /* sampled from the (brightened) headshot backdrop */
 
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
@@ -40,7 +40,7 @@
   --measure: 46rem;
   --wide: 70rem;
   --radius: 4px;
-  --photo-w: 26rem;
+  --photo-w: 30rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,7 +58,7 @@
     --chip-text: #d6d4cf;
     --card: #1a1b1e;
     --band-light: #1a1b1e;
-    --band-photo: #888a8d; /* the photo's grey (#aeafb4) after the brightness(.78) filter below */
+    --band-photo: #919294; /* the photo's grey (#babbbe) after the brightness(.78) filter below */
     --badge-quiet: #2a2c30;
   }
   .band-photo { filter: brightness(0.78); }
@@ -81,8 +81,9 @@
 .site-name { font-size: 1.05rem; letter-spacing: -0.01em; }
 .feature-card .feature-figure { box-shadow: 0 1px 3px rgb(30 25 15 / 0.06); }
 
-/* Top bar: the one place Imperial Blue appears */
-.site-header { background: var(--imperial-blue); border-bottom: 0; }
+/* Top bar: the one place Imperial Blue appears. It stays pinned to the top while scrolling. */
+.site-header { background: var(--imperial-blue); border-bottom: 0; position: sticky; top: 0; z-index: 50; }
+.paper { scroll-margin-top: 6rem; } /* keep #paper links clear of the pinned bar */
 .site-header .site-name, .site-header .site-name:hover { color: #fff; font-weight: 500; }
 .site-header .wrap { align-items: center; }
 .org-logo { display: block; padding-left: 1rem; border-left: 1px solid rgb(255 255 255 / 0.35); }
@@ -125,7 +126,7 @@ body:not(.is-home) main { padding-top: 3.5rem; }
 
 /* Narrow screens: photo on top, fading down into the band */
 @media (max-width: 52rem) {
-  .band { --photo-w: 17rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 13rem, var(--band-light) 24rem); }
+  .band { --photo-w: 19rem; background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 13rem, var(--band-light) 24rem); }
   .band-inner { grid-template-columns: 1fr; gap: 0; }
   .band-photo {
     order: -1; width: var(--photo-w); justify-self: center; margin-top: 1rem;
