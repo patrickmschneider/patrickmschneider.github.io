@@ -8,7 +8,7 @@ import { tools, liveTools } from '../lib/data';
   <div class="wrap wide reading">
     <h1 class="page-title">Tools</h1>
     {tools.intro && <p class="lede">{tools.intro}</p>}
-    <ul class="feature-grid">
+    <ul class="feature-grid tool-cards">
       {liveTools.map((t) => (
         <FeatureCard href={t.url!} title={t.title} image={t.image} alt={`Screenshot of ${t.title}`} text={t.description} cta="Open tool" source={t.source} />
       ))}

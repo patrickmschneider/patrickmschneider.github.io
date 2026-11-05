@@ -19,6 +19,11 @@ tools:
     url: /macro-conferences/
     image: /images/thumbs/macro-conferences.jpg
     source: https://github.com/patrickmschneider/macro-conferences
+  - title: Political Weather
+    description: A weather-map view of the 2026 U.S. midterm swing.
+    url: /political-weather/
+    image: /images/thumbs/political-weather.jpg
+    source: https://github.com/patrickmschneider/political-weather
   - title: Growth Accounting
     description: Quickly decompose historical growth across countries.
     # TODO: no repo yet. Add `url:` once it is published.

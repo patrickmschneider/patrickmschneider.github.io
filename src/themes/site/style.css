@@ -238,6 +238,10 @@ a:hover,
   top: -1px;
 }
 
+/* Tools page: two cards per row, so four tools sit in a tidy 2 × 2 */
+.tool-cards { grid-template-columns: repeat(auto-fill, minmax(24rem, 1fr)); }
+@media (max-width: 40rem) { .tool-cards { grid-template-columns: 1fr; } }
+
 /* Dark mode element overrides (kept last so they win over the light rules above) */
 @media (prefers-color-scheme: dark) {
   .site-header { background: var(--bg); }
