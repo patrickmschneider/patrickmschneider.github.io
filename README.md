@@ -77,7 +77,8 @@ Preview locally with `THEME=x npx astro dev`.
 - `public/images/thumbs/` holds the figure cards: tool screenshots and recoloured paper figures.
 - Paper thumbnails (`image:` in papers.yaml) appear on the Research page; featured papers also get a home-page card.
 
-## Switching the domain
+## Domain
 
-`site` in `astro.config.mjs` is the address used in link previews and for search engines. It is set to
-the github.io address for now; change it to `https://www.patrickmschneider.com` when the domain is switched.
+The site is served at https://www.patrickmschneider.com (GitHub Pages custom domain; DNS at GoDaddy:
+four A records for `@` → 185.199.108–111.153, and `www` CNAME → patrickmschneider.github.io).
+`site` in `astro.config.mjs` must match it.
