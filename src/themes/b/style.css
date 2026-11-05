@@ -1,33 +1,39 @@
-/* Direction B, "Figure-led": crisp white, Newsreader + IBM Plex Sans/Mono, teal-blue accent, a shaded hero band. */
-@import '@fontsource-variable/newsreader/opsz.css';
+/* Direction B, "Figure-led": all sans (IBM Plex Sans + Plex Mono for labels), teal-blue accent,
+   and a hero band whose grey matches the headshot's studio backdrop so the photo blends in. */
 @import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/400-italic.css';
 @import '@fontsource/ibm-plex-sans/500.css';
 @import '@fontsource/ibm-plex-sans/600.css';
+@import '@fontsource/ibm-plex-sans/700.css';
 @import '@fontsource/ibm-plex-mono/400.css';
 @import '@fontsource/ibm-plex-mono/500.css';
 @import '../common.css';
 
 :root {
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
-  --font-display: 'Newsreader Variable', Georgia, serif;
+  --font-display: 'IBM Plex Sans', system-ui, sans-serif;
   --font-ui: 'IBM Plex Sans', system-ui, sans-serif;
   --font-meta: 'IBM Plex Mono', ui-monospace, monospace;
   --body-size: 1rem;
 
-  --bg: #ffffff;
+  --bg: #f7f7f8;
   --text: #0e1116;
   --text-soft: #2a3038;
-  --muted: #66707a;
-  --rule: #e8ebee;
+  --muted: #5f6873;
+  --rule: #e3e5e8;
   --accent: #0a5c8a;
   --hover: #07476b;
   --on-accent: #ffffff;
-  --tint: #eef5fa;
-  --chip-border: #cfdbe4;
-  --band: #f2f5f7;
+  --tint: #e9f1f7;
+  --chip-border: #cbd6df;
+  --card: #ffffff;
+
+  /* Hero band: light where the text sits, fading to the photo's backdrop grey (#aeafb4). */
+  --band-light: #e8e9eb;
+  --band-photo: #aeafb4;
 
   --measure: 46rem;
-  --wide: 68rem;
+  --wide: 70rem;
   --radius: 4px;
 }
 
@@ -43,35 +49,65 @@
     --on-accent: #0f1215;
     --tint: #16232d;
     --chip-border: #2c3d4a;
-    --band: #161a1e;
+    --card: #161a1e;
+    --band-light: #171a1e;
+    --band-photo: #55565a;
   }
-  .band-photo { filter: brightness(0.9); }
+  .band-photo { filter: brightness(0.5); }
   .feature-figure { background: #f2f4f6; }
 }
 
-/* Mono for labels and metadata */
+/* Type: sans throughout, tight headings, mono for labels and metadata */
 .label, .feature-kicker, .chip { font-family: var(--font-meta); letter-spacing: 0.04em; }
 .label { font-size: 0.72rem; font-weight: 500; border-top: 0; padding-top: 0; color: var(--accent); }
-.chip { font-size: 0.72rem; letter-spacing: 0.02em; }
-.page-title, .name { font-weight: 600; letter-spacing: -0.02em; }
-.name { font-size: clamp(2.4rem, 5vw, 3.1rem); }
-.statement { font-family: var(--font-display); font-size: 1.35rem; }
-.paper-title, .feature-title, .tool-card h2 { font-family: var(--font-display); font-size: 1.25rem; }
-.site-name { font-size: 1.2rem; }
+.chip { font-size: 0.72rem; letter-spacing: 0.02em; background: var(--card); }
+.page-title { font-weight: 600; letter-spacing: -0.025em; }
+.name { font-size: clamp(2.5rem, 5.5vw, 3.4rem); font-weight: 600; letter-spacing: -0.03em; }
+.statement { font-size: 1.3rem; font-weight: 400; letter-spacing: -0.01em; line-height: 1.45; }
+.paper-title, .feature-title, .tool-card h2 { font-weight: 600; letter-spacing: -0.01em; }
+.paper-title { font-size: 1.125rem; }
+.feature-title { font-size: 1.1rem; }
+.site-name { font-size: 1.05rem; letter-spacing: -0.01em; }
+.feature-figure { border-color: var(--rule); }
+.feature-card .feature-figure, .tool-card { box-shadow: 0 1px 2px rgb(15 20 30 / 0.04); }
+.tool-card { background: var(--card); }
 
-/* Hero band: full width, photo left */
+/* Hero band: intro text left, large photo right, bottom-aligned and blended into the backdrop */
 main { padding-top: 0; }
-.band { background: var(--band); border-bottom: 1px solid var(--rule); margin-bottom: 1rem; }
-.band-inner { display: grid; grid-template-columns: 12.5rem minmax(0, 1fr); gap: 3rem; align-items: center; padding-block: 3.5rem; }
-.band-photo { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: center 22%; border-radius: 50%; }
-.band .statement { max-width: 40rem; margin-bottom: 0; }
-.band .tagline { margin-bottom: 1.25rem; }
-.block .label + .feature-grid { margin-bottom: 3rem; }
+.band {
+  background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 42%, var(--band-photo) 72%, var(--band-photo) 100%);
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) 26rem; gap: 2rem; align-items: end; }
+.band .intro-text { padding-block: 4rem 3.5rem; max-width: 40rem; }
+.band-photo {
+  width: 100%;
+  aspect-ratio: 790 / 800;
+  object-fit: cover;
+  margin-top: 2.5rem;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
+  mask-composite: intersect;
+}
+.band .tagline { margin-bottom: 1.5rem; color: var(--text-soft); }
+.band .statement { margin-bottom: 1rem; }
+.band .bio { color: var(--text-soft); }
 
-/* Non-home pages keep normal top spacing */
+.block .label + .feature-grid { margin-bottom: 3rem; }
+.news-block { max-width: var(--wide); }
+.news { max-width: 46rem; }
 body:not(.is-home) main { padding-top: 3.5rem; }
 
-@media (max-width: 46rem) {
-  .band-inner { grid-template-columns: 6.5rem 1fr; gap: 1.25rem; padding-block: 2rem; align-items: start; }
-  .band .statement { font-size: 1.15rem; }
+/* Narrow screens: photo on top, fading down into the band */
+@media (max-width: 52rem) {
+  .band { background: linear-gradient(180deg, var(--band-photo) 0, var(--band-photo) 13rem, var(--band-light) 24rem); }
+  .band-inner { grid-template-columns: 1fr; gap: 0; }
+  .band-photo {
+    order: -1; width: 17rem; justify-self: center; margin-top: 1rem;
+    -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 60%, transparent 100%), linear-gradient(to right, transparent 0%, #000 18%, #000 82%, transparent 100%);
+  }
+  .band .intro-text { padding-block: 0.5rem 2.5rem; }
+  .statement { font-size: 1.15rem; }
 }

@@ -1,6 +1,6 @@
 ---
-// Direction B, "Figure-led": full-width band with round photo, then a grid of
-// figure cards mixing papers and tools, then About | News.
+// Direction B, "Figure-led": full-width hero band holding the whole intro (name, statement, bio, links)
+// with a large photo blended into the band, then figure cards for papers and tools, then news.
 import Intro from '../../components/Intro.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
 import { profile, papers, news, liveTools, inlineMd } from '../../lib/data';
@@ -10,8 +10,8 @@ const featured = papers.filter((p) => p.featured);
 
 <section class="band">
   <div class="wrap wide band-inner">
+    <Intro />
     <img class="band-photo" src={profile.photo} alt={`Photo of ${profile.name}`} width="790" height="800" />
-    <Intro showBio={false} />
   </div>
 </section>
 
@@ -30,19 +30,13 @@ const featured = papers.filter((p) => p.featured);
   </ul>
 </section>
 
-<section class="wrap wide block split">
-  <div>
-    <h2 class="label">About</h2>
-    {profile.bio.map((para) => <p set:html={inlineMd(para)} />)}
-  </div>
-  {news.length > 0 && (
-    <div>
-      <h2 class="label">News</h2>
-      <ol class="news">
-        {news.map((n) => (
-          <li><span class="news-date">{n.date}</span><span set:html={inlineMd(n.text)} /></li>
-        ))}
-      </ol>
-    </div>
-  )}
-</section>
+{news.length > 0 && (
+  <section class="wrap wide block news-block">
+    <h2 class="label">News</h2>
+    <ol class="news">
+      {news.map((n) => (
+        <li><span class="news-date">{n.date}</span><span set:html={inlineMd(n.text)} /></li>
+      ))}
+    </ol>
+  </section>
+)}
