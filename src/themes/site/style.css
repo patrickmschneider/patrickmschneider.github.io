@@ -41,9 +41,10 @@
   --measure: 46rem;
   --wide: 70rem;
   --radius: 4px;
-  --photo-w: clamp(27rem, 30vw, 29rem); /* chest ends ~4–6rem below the buttons */
+  --photo-w: 28rem;      /* sized so the eyes line up with the first line of the description */
   --photo-top: 1rem;     /* gap between the blue bar and the top of the photo */
   --hair-line: 0.10;     /* top of the hair sits at 10% of the photo's height */
+  --hair-above: 0.75rem; /* hair starts this far above the top of the name */
   --tile: #f1efea;
 }
 
@@ -130,10 +131,10 @@ main { padding-top: 0; }
   overflow: hidden;
 }
 .band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 3rem; align-items: start; }
-/* The top of the name's capitals lines up with the top of the hair (photo top + 10% of its height);
+/* The top of the name's capitals sits just below the top of the hair (photo top + 10% of its height);
    0.25em removes the space above the capitals in the name's line box. The chest ends ~4rem below the buttons. */
 .band .intro-text {
-  padding-top: calc(var(--photo-top) + var(--photo-w) * var(--hair-line) - 0.25 * clamp(2.5rem, 5.5vw, 3.4rem));
+  padding-top: calc(var(--photo-top) + var(--photo-w) * var(--hair-line) + var(--hair-above) - 0.25 * clamp(2.5rem, 5.5vw, 3.4rem));
   padding-bottom: 4rem;
   max-width: 36rem;
 }
