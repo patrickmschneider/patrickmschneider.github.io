@@ -11,7 +11,16 @@ const featured = papers.filter((p) => p.featured);
 <section class="band">
   <div class="wrap wide band-inner">
     <Intro />
-    <img class="band-photo" src={profile.photo} alt={`Photo of ${profile.name}`} width="790" height="800" />
+    <img
+      class="band-photo"
+      src={profile.photo}
+      srcset="/images/headshot-860.jpg 850w, /images/headshot.jpg 1350w"
+      sizes="(max-width: 52rem) 17rem, 26rem"
+      alt={`Photo of ${profile.name}`}
+      width="1350"
+      height="1366"
+      fetchpriority="high"
+    />
   </div>
 </section>
 
