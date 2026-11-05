@@ -1,6 +1,6 @@
 ---
-// Home page: hero (intro + photo blended into its backdrop), three featured papers,
-// one sentence pointing to the tools, and news only when there is real news.
+// Home page: hero (intro incl. a sentence pointing to the tools, photo blended into its backdrop),
+// three featured papers, and news only when there is real news.
 import Intro from '../../components/Intro.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
 import { profile, papers, news, liveTools, inlineMd, paperStatus } from '../../lib/data';
@@ -22,7 +22,19 @@ const featured = papers.filter((p) => p.featured);
 
 <section class="band">
   <div class="wrap wide band-inner">
-    <Intro />
+    <Intro>
+      {liveTools.length > 0 && (
+        <p class="statement tools-line">
+          I also build small public tools:{' '}
+          {liveTools.map((t, i) => (
+            <>
+              <a href={t.url}>{t.title}</a>
+              {i < liveTools.length - 2 ? ', ' : i === liveTools.length - 2 ? (liveTools.length > 2 ? ', and ' : ' and ') : '.'}
+            </>
+          ))}
+        </p>
+      )}
+    </Intro>
     <img
       class="band-photo"
       src={big}
@@ -45,20 +57,6 @@ const featured = papers.filter((p) => p.featured);
   </ul>
   <p class="more"><a href={page('/research/')}>All research →</a></p>
 </section>
-
-{liveTools.length > 0 && (
-  <section class="wrap wide block tools-line">
-    <p>
-      I also build small public tools:{' '}
-      {liveTools.map((t, i) => (
-        <>
-          <a href={t.url}>{t.title}</a>
-          {i < liveTools.length - 2 ? ', ' : i === liveTools.length - 2 ? (liveTools.length > 2 ? ', and ' : ' and ') : '.'}
-        </>
-      ))}
-    </p>
-  </section>
-)}
 
 {news.length > 0 && (
   <section class="wrap wide block">

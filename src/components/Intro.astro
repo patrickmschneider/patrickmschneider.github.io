@@ -20,6 +20,7 @@ const secondary = profile.links.filter((l) => !l.primary);
   </p>
   {profile.statement && <p class="statement" set:html={inlineMd(profile.statement)} />}
   {showBio && profile.bio.map((para) => <p class="bio" set:html={inlineMd(para)} />)}
+  <slot />
   <div class="actions">
     {primary.map((l, i) => (
       <a class:list={['btn', i === 0 ? 'btn-solid' : 'btn-outline']} href={l.url}>{l.label}</a>
