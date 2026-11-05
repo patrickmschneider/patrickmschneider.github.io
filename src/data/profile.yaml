@@ -1,0 +1,35 @@
+# Basic info shown on the home page, header and link previews.
+name: Patrick Schneider
+position: Assistant Professor in Economics
+affiliation: Imperial Business School
+affiliation_url: https://www.imperial.ac.uk/business-school/
+
+photo: /images/headshot.jpg
+
+# Short description used by search engines and link previews.
+description: >-
+  Patrick Schneider is an Assistant Professor in Economics at Imperial Business School,
+  working on macroeconomics, household finance and public economics.
+
+# Home page bio. Each item is a paragraph. Markdown links [like this](https://…) work.
+bio:
+  - I'm an Assistant Professor in Economics at [Imperial Business School](https://www.imperial.ac.uk/business-school/).
+  - I'm interested in the intersection of macroeconomics, household finance and public economics. My recent work focuses on unconventional stabilisation policies like early access to retirement accounts.
+  - I completed my PhD at the London School of Economics, and I previously worked as an economist at the Bank of England.
+
+email: p.schneider@imperial.ac.uk
+
+# Links row on the home page, in this order.
+links:
+  - label: CV
+    url: /files/cv.pdf
+  - label: Email
+    url: mailto:p.schneider@imperial.ac.uk
+  - label: Scholar
+    url: https://scholar.google.com/citations?user=OJ5ewzQAAAAJ&hl=en
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/patrickmschneider/
+  - label: Twitter
+    url: https://x.com/patricksecon
+  - label: Bluesky
+    url: https://bsky.app/profile/patricksecon.bsky.social

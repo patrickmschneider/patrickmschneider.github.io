@@ -1,0 +1,56 @@
+---
+import { coauthorName, type Paper } from '../lib/data';
+
+interface Props {
+  paper: Paper;
+  showAbstract?: boolean;
+}
+const { paper, showAbstract = true } = Astro.props;
+const isExternal = (url: string) => /^https?:/.test(url);
+---
+
+<article class="paper">
+  <h3 class="paper-title">
+    {paper.url ? <a href={paper.url}>{paper.title}</a> : paper.title}
+    {paper.year && <span class="paper-year">({paper.year})</span>}
+  </h3>
+
+  {paper.coauthors.length > 0 && (
+    <p class="paper-authors">
+      with{' '}
+      {paper.coauthors.map((c, i) => (
+        <>
+          {typeof c !== 'string' && c.url ? <a href={c.url}>{c.name}</a> : coauthorName(c)}
+          {i < paper.coauthors.length - 2 ? ', ' : i === paper.coauthors.length - 2 ? (paper.coauthors.length > 2 ? ', and ' : ' and ') : ''}
+        </>
+      ))}
+    </p>
+  )}
+
+  {(paper.venue || paper.note) && (
+    <p class="paper-venue">
+      {paper.venue && <span>{paper.venue}</span>}
+      {paper.note && <span class="paper-note">{paper.note}</span>}
+    </p>
+  )}
+
+  {(paper.url || paper.links.length > 0) && (
+    <p class="paper-links">
+      {paper.url && (
+        <a class="chip" href={paper.url} rel={isExternal(paper.url) ? 'noopener' : undefined}>
+          {paper.url.endsWith('.pdf') || paper.url.includes('.pdf?') ? 'PDF' : 'Paper'}
+        </a>
+      )}
+      {paper.links.map((l) => (
+        <a class="chip" href={l.url}>{l.label}</a>
+      ))}
+    </p>
+  )}
+
+  {showAbstract && paper.abstract && (
+    <details class="paper-abstract">
+      <summary>Abstract</summary>
+      <p>{paper.abstract}</p>
+    </details>
+  )}
+</article>

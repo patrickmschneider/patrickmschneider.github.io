@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { tools } from '../lib/data';
+---
+
+<Base title="Tools">
+  <h1>Tools</h1>
+  {tools.intro && <p class="lede">{tools.intro}</p>}
+  <ul class="tool-grid">
+    {tools.tools.map((t) => (
+      <li class:list={['tool', { pending: !t.url }]}>
+        <h2>{t.url ? <a href={t.url}>{t.title}</a> : t.title}</h2>
+        <p>{t.description}</p>
+        <p class="tool-meta">
+          {!t.url && <span>Coming soon</span>}
+          {t.source && <a href={t.source}>Source</a>}
+        </p>
+      </li>
+    ))}
+  </ul>
+</Base>

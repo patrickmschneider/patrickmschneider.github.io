@@ -1,0 +1,20 @@
+# Tools page. Each tool is its own GitHub repo published with GitHub Pages,
+# so it is served at patrickmschneider.com/<repo-name>/ automatically.
+intro: I prompt AI so you don't have to.
+
+tools:
+  - title: Monetary space
+    description: A guide to monetary policy in the UK, Australia, and USA.
+    url: /monetary-space/
+    source: https://github.com/patrickmschneider/monetary-space
+  - title: Fiscal space
+    description: A guide to public finances in the UK, Australia, and USA.
+    url: /fiscal-space/
+    source: https://github.com/patrickmschneider/fiscal-space
+  - title: Macro conferences
+    description: Upcoming calls for papers in macro, household finance & pensions.
+    url: /macro-conferences/
+    source: https://github.com/patrickmschneider/macro-conferences
+  - title: Growth accounting
+    description: Quickly decompose historical growth across countries.
+    # TODO: no repo yet. Add `url:` once it is published; until then it shows as "coming soon".

@@ -1,0 +1,145 @@
+# Research page. Papers appear in the order listed, grouped by `section`.
+#
+# section:  working | published | prephd
+# url:      where the title links (PDF or landing page)
+# coauthors: list of names; add a url to link a name, e.g. {name: Jane Doe, url: https://…}
+# venue:    journal / series line, shown under the title
+# note:     short status note, e.g. "forthcoming at …"
+# links:    extra buttons (appendix, slides, code, blog, …)
+# abstract: optional; shown in a collapsible box
+# featured: true puts the paper on the home page
+
+- section: working
+  title: Who Pays for AI?
+  url: https://whopaysfor.ai/paper/
+  featured: true
+  coauthors:
+    - Nikhil Datta
+    - Peter Lambert
+  links:
+    - { label: Website, url: https://whopaysfor.ai/ }
+  abstract: >-
+    We document who pays for AI tools using a panel of millions of open banking and cardholder
+    accounts from 2022 to mid-2026, covering billions of transactions. We find that subscriptions to
+    products like Claude and ChatGPT have roughly doubled every 12 months since their introduction,
+    reaching one in twenty UK adults by mid-2026. Adoption is five times higher for under 30s than
+    over 60s, 27 percent higher for men, and grows 1.8 times larger from the bottom to the top
+    quintile of earnings. While ChatGPT held 74 percent of direct subscription spending in late 2025,
+    its share fell 21 percentage points by mid 2026 as Claude surged from 7 to 29 percent of direct
+    spending, driven partly by growth in users who work in technical and professional roles and pay
+    for the most expensive plans. High-frequency banking data are well suited to study the rapidly
+    evolving market for paid consumer AI products.
+
+- section: working
+  title: Household Liquidity Policy
+  url: /files/schneider-moran-household-liquidity-policy.pdf
+  coauthors:
+    - Patrick Moran
+  links:
+    - { label: Appendix, url: /files/schneider-moran-household-liquidity-policy-appendix.pdf }
+    - { label: Slides, url: /files/schneider-moran-household-liquidity-policy-slides.pdf }
+  abstract: >-
+    We assess ‘household liquidity policy’, a novel approach to stimulus that relies on relaxed
+    regulation instead of conventional fiscal tools. We develop a model to analyse the aggregate and
+    distributional effects of liquidity policy relative to conventional fiscal stimulus, focusing on
+    an increasingly common form: early access to retirement saving accounts. We find that both
+    policies generate similar aggregate stimulus but with distributional and welfare trade-offs due
+    to their funding sources. Liquidity policy benefits wealthier workers and retirees, who enjoy
+    lower taxes and flexibility. Liquidity policy is regressive, shifting the burden onto poorer
+    households who suffer reduced consumption in retirement.
+
+- section: working
+  title: "The Nested-Drift Algorithm: A New Solution Approach to Continuous Time Problems with Multiple Endogenous State Variables"
+  url: https://github.com/SSabet/NestedDrift/blob/main/Sabet%20%26%20Schneider%20-%20Nested%20Drift.pdf?raw=true
+  coauthors:
+    - Soroush Sabet
+  links:
+    - { label: Code, url: https://github.com/SSabet/NestedDrift }
+  abstract: >-
+    We introduce a new algorithm for solving continuous time problems with multiple endogenous state
+    variables in a finite–difference scheme. The algorithm extends the logic of up–winding to its
+    logical extreme in a way that meets the necessary conditions for local convergence (Barles and
+    Souganidis, 1991). It is consistent because the directions of state–drift are never in conflict,
+    and constraints are applied non–linearly. It is efficient because it nests the search for these
+    state–drifts in a way that ensures costly root–finding is only performed after other
+    alternatives are exhausted. The algorithm improves on the existing ‘split–drift’ approach from
+    (Kaplan et al., 2018; Achdou et al., 2022), which can fail under some parameter settings because
+    it is not guaranteed to be consistent.
+
+- section: working
+  title: "Yield to Temptation: A Comparison of Present-Biased Preferences in Continuous Time"
+  url: /files/schneider-yield-to-temptation.pdf
+  abstract: >-
+    I compare two ways of modelling present bias in dynamic consumption-saving problems:
+    quasi-hyperbolic discounting (QHD) and temptation preferences. I show how to implement temptation
+    preferences in continuous time in a general way, where the temptation is to adopt an alternative
+    discount function. Doing so allows for a direct comparison to results for the continuous-time
+    limit of QHD (‘instantaneous gratification’ preferences (Harris and Laibson, 2013; Maxted,
+    2024)). I show that QHD consumers are behaviourally equivalent to naively tempted consumers, but
+    that welfare is not equivalent. The models differ in various ways when consumers are
+    sophisticated, and variation in the degree of sophistication offers opportunities for
+    identification between the two models. Temptation preferences are more flexible than QHD, and so
+    offer a promising path forward for incorporating present–bias into macro models.
+
+- section: published
+  title: Self-Control and Early Withdrawal from Retirement Accounts
+  url: /files/moran-schneider-self-control-early-withdrawal.pdf
+  coauthors:
+    - Patrick Moran
+  note: Forthcoming at National Tax Journal
+  links:
+    - { label: Appendix, url: /files/moran-schneider-self-control-early-withdrawal-appendix.pdf }
+    - { label: IFS Working Paper, url: https://ifs.org.uk/publications/self-control-and-early-withdrawal-retirement-accounts }
+  abstract: >-
+    Using a survey-elicited measure of psychological self-control and a policy change in Australia
+    during COVID-19, we find that self-control issues significantly predict early withdrawals from
+    retirement accounts. Individuals in the top quintile of self-control issues are 60% more likely
+    to withdraw than those in the bottom quintile. Self-control is a strong predictor of early
+    withdrawal, comparable to the effect of financial illiteracy, and more important than other
+    behavioral factors like planning horizons or personality traits. The effects are economically
+    meaningful: eliminating self-control issues would reduce predicted early withdrawals by 23%,
+    almost as large as the effect of adverse income shocks.
+
+- section: prephd
+  title: "Disunited Kingdom? Brexit, Trade and Scottish Independence"
+  year: 2021
+  url: https://cep.lse.ac.uk/_new/publications/abstract.asp?index=7714
+  coauthors:
+    - Hanwei Huang
+    - Thomas Sampson
+  venue: CEP Brexit Analysis No. 17
+  links:
+    - { label: LSE blog, url: "https://blogs.lse.ac.uk/brexit/2021/02/04/indyref2-scottish-independence-would-be-2-3-times-more-costly-than-that-of-brexit-and-rejoining-the-eu-wouldnt-make-up-the-difference/" }
+    - { label: VoxEU, url: https://cepr.org/voxeu/columns/disunited-kingdom-brexit-trade-and-scottish-independence }
+
+- section: prephd
+  title: Market Power and Monetary Policy
+  year: 2019
+  url: https://www.bankofengland.co.uk/working-paper/2019/market-power-and-monetary-policy
+  coauthors:
+    - Tommaso Aquilante
+    - Shiv Chowla
+    - Nikola Dacic
+    - Andrew Haldane
+    - Riccardo Masolo
+    - Martin Seneca
+    - Srdan Tatomir
+  venue: Bank of England Working Paper No. 798
+  links:
+    - { label: Speech, url: https://www.bankofengland.co.uk/-/media/boe/files/speech/2018/market-power-and-monetary-policy-speech-by-andy-haldane.pdf }
+
+- section: prephd
+  title: Decomposing Differences in Productivity Distributions
+  year: 2018
+  url: https://www.bankofengland.co.uk/working-paper/2018/decomposing-differences-in-productivity-distributions
+  venue: Bank of England Working Paper No. 740
+  links:
+    - { label: Bank Underground blog, url: https://bankunderground.co.uk/2018/03/29/the-uks-productivity-puzzle-is-in-the-top-tail-of-the-distribution/ }
+
+- section: prephd
+  title: Organizational Cultures of Corruption
+  year: 2017
+  url: https://onlinelibrary.wiley.com/doi/full/10.1111/jpet.12174
+  coauthors:
+    - Gautam Bose
+  venue: Journal of Public Economic Theory 19:1

@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import PaperEntry from '../components/PaperEntry.astro';
+import { papers } from '../lib/data';
+
+const sections = [
+  { key: 'working', heading: 'Working Papers' },
+  { key: 'published', heading: 'Publications' },
+  { key: 'prephd', heading: 'Pre-PhD Publications & Policy Work' },
+] as const;
+---
+
+<Base title="Research">
+  <h1>Research</h1>
+  {sections.map((s) => {
+    const list = papers.filter((p) => p.section === s.key);
+    return list.length > 0 && (
+      <section>
+        <h2>{s.heading}</h2>
+        {list.map((p) => <PaperEntry paper={p} />)}
+      </section>
+    );
+  })}
+</Base>

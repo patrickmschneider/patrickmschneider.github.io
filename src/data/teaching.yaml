@@ -1,0 +1,12 @@
+# Teaching page, grouped by institution, in this order.
+- institution: Imperial Business School
+  courses:
+    - { title: Advanced Macroeconomics, level: Undergraduate, years: "2026" }
+    - { title: Macroeconomics, level: MBA, years: "2026" }
+
+- institution: London School of Economics
+  courses:
+    - { code: PP404, title: Economics for Public Policy, level: Master of Public Policy, years: "2022–24" }
+    - { code: PP440E, title: Economic Policy Analysis, level: Executive Master of Public Policy, years: "2021–23" }
+    - { code: EC1P1, title: Economics, level: Undergraduate, years: "2021–23" }
+    - { code: EC102, title: Introductory Economics, level: Undergraduate, years: "2020–21" }
