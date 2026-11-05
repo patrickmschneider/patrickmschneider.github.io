@@ -3,7 +3,7 @@
 // three featured papers, and news only when there is real news.
 import Intro from '../../components/Intro.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
-import { profile, papers, news, liveTools, inlineMd, paperStatus } from '../../lib/data';
+import { profile, papers, news, tools, liveTools, inlineMd, paperStatus } from '../../lib/data';
 import { page } from '../../lib/url';
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
@@ -27,13 +27,14 @@ const heroTools = liveTools.filter((t) => t.hero);
     <Intro>
       {heroTools.length > 0 && (
         <p class="tools-line">
-          I also build small public tools:{' '}
+          {tools.hero_before}{' '}
           {heroTools.map((t, i) => (
             <>
               <a href={t.url}>{t.title}</a>
-              {i < heroTools.length - 2 ? ', ' : i === heroTools.length - 2 ? (heroTools.length > 2 ? ', and ' : ' and ') : '.'}
+              {i < heroTools.length - 2 ? ', ' : i === heroTools.length - 2 ? (heroTools.length > 2 ? ', and ' : ' and ') : ''}
             </>
           ))}
+          {tools.hero_after}
         </p>
       )}
     </Intro>

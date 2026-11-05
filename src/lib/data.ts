@@ -70,6 +70,8 @@ const teachingSchema = z.array(
 const toolsSchema = z
   .object({
     intro: z.string().optional(),
+    hero_before: z.string().default('I also build small public tools like'),
+    hero_after: z.string().default('.'),
     tools: z.array(
       z
         .object({

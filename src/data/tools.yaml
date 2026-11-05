@@ -4,6 +4,10 @@
 # "I also build small public tools…" line (it still appears on the Tools page).
 intro: Small public tools on macro policy and the profession.
 
+# Home-page line: <hero_before> <tool links> <hero_after>
+hero_before: I also build small public tools like
+hero_after: ", giving an overview of macro policy issues."
+
 tools:
   - title: Monetary Space
     description: A guide to monetary policy in the UK, Australia, and USA.
