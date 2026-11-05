@@ -36,6 +36,8 @@ const paperSchema = z
     title: z.string(),
     url: z.string().optional(),
     year: z.number().optional(),
+    status: z.enum(['working', 'forthcoming', 'published']).optional(),
+    journal: z.string().optional(),
     short: z.string().optional(),
     image: z.string().optional(),
     teaser: z.string().optional(),
@@ -104,6 +106,13 @@ export const teaching = load('teaching.yaml', teachingSchema);
 export const tools = load('tools.yaml', toolsSchema);
 export const news = load('news.yaml', newsSchema).news;
 export const liveTools = tools.tools.filter((t) => t.url);
+
+/** Publication status: explicit `status`, otherwise working papers are 'working' and the rest 'published'. */
+export function paperStatus(p: Paper): { kind: 'working' | 'forthcoming' | 'published'; label: string } {
+  const kind = p.status ?? (p.section === 'working' ? 'working' : 'published');
+  const label = { working: 'Working paper', forthcoming: 'Forthcoming', published: 'Published' }[kind];
+  return { kind, label };
+}
 
 /** URL-safe id for a paper, used for #anchors. */
 export const slug = (s: string) =>

@@ -2,6 +2,9 @@
 #
 # section:  working | published | prephd
 # year:     shown in the left-hand column
+# status:   working | forthcoming | published (optional; defaults to working for
+#           working papers, published otherwise). Shown as a badge on home-page cards.
+# journal:  journal name, shown next to the status badge (e.g. National Tax Journal)
 # short:    short label under the year, e.g. "BoE WP 798" or "NTJ"
 # url:      where the title links (PDF or landing page)
 # coauthors: list of names; add a url to link a name, e.g. {name: Jane Doe, url: https://…}
@@ -97,6 +100,8 @@
 - section: published
   title: Self-Control and Early Withdrawal from Retirement Accounts
   year: 2026
+  status: forthcoming
+  journal: National Tax Journal
   short: NTJ
   featured: true
   image: /images/thumbs/self-control-early-withdrawal.png

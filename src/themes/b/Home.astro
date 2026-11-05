@@ -3,7 +3,7 @@
 // with a large photo blended into the band, then figure cards for papers and tools, then news.
 import Intro from '../../components/Intro.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
-import { profile, papers, news, liveTools, inlineMd } from '../../lib/data';
+import { profile, papers, news, liveTools, inlineMd, paperStatus } from '../../lib/data';
 
 const featured = papers.filter((p) => p.featured);
 ---
@@ -19,7 +19,7 @@ const featured = papers.filter((p) => p.featured);
   <h2 class="label">Research</h2>
   <ul class="feature-grid">
     {featured.map((p) => (
-      <FeatureCard href={p.url ?? '#'} title={p.title} image={p.image} kicker={`Paper · ${p.year ?? ''}`} text={p.teaser} />
+      <FeatureCard href={p.url ?? '#'} title={p.title} image={p.image} badge={paperStatus(p)} kicker={p.journal ?? (p.year ? String(p.year) : undefined)} text={p.teaser} />
     ))}
   </ul>
   <h2 class="label">Tools</h2>

@@ -57,6 +57,7 @@
     --card: #1a1b1e;
     --band-light: #1a1b1e;
     --band-photo: #55565a;
+    --badge-quiet: #2a2c30;
   }
   .band-photo { filter: brightness(0.5); }
   .feature-figure { background: #f2f2f2; }
