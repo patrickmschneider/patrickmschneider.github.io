@@ -2,3 +2,6 @@ node_modules/
 dist/
 .astro/
 .DS_Store
+
+# Original photo-shoot files (large; site uses resized copies in public/images)
+images/
