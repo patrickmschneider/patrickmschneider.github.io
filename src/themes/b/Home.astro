@@ -5,6 +5,9 @@ import Intro from '../../components/Intro.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
 import { profile, papers, news, liveTools, inlineMd, paperStatus } from '../../lib/data';
 
+// Which headshot to show (files in public/images: <photo>.jpg and <photo>-860.jpg).
+interface Props { photo?: string }
+const { photo = 'headshot' } = Astro.props;
 const featured = papers.filter((p) => p.featured);
 ---
 
@@ -13,8 +16,8 @@ const featured = papers.filter((p) => p.featured);
     <Intro />
     <img
       class="band-photo"
-      src={profile.photo}
-      srcset="/images/headshot-860.jpg 860w, /images/headshot.jpg 1600w"
+      src={`/images/${photo}.jpg`}
+      srcset={`/images/${photo}-860.jpg 860w, /images/${photo}.jpg 1600w`}
       sizes="(max-width: 52rem) 17rem, 26rem"
       alt={`Photo of ${profile.name}`}
       width="1600"

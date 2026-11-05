@@ -1,0 +1,11 @@
+/* Variant of B: photo on the LEFT, intro text on the right; the fade runs the other way
+   (photo grey on the left, light behind the text on the right). Phones are unchanged. */
+@import '../b/style.css';
+
+@media (min-width: 52.01rem) {
+  .band {
+    background: linear-gradient(270deg, var(--band-light) 0%, var(--band-light) 42%, var(--band-photo) 72%, var(--band-photo) 100%);
+  }
+  .band-inner { grid-template-columns: var(--photo-w) minmax(0, 1fr); gap: 3.5rem; }
+  .band-photo { order: -1; }
+}
