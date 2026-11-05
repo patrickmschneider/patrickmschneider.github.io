@@ -78,6 +78,8 @@ const toolsSchema = z
           url: z.string().optional(),
           image: z.string().optional(),
           source: z.string().optional(),
+          /** list this tool in the home-page "I also build…" line */
+          hero: z.boolean().default(true),
         })
         .strict(),
     ),

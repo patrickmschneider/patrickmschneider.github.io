@@ -1,6 +1,7 @@
 # Tools page. Each tool is its own GitHub repo published with GitHub Pages,
 # so it is served at patrickmschneider.com/<repo-name>/ automatically.
-# Tools without a `url` are hidden.
+# Tools without a `url` are hidden. `hero: false` keeps a tool off the home-page
+# "I also build small public tools…" line (it still appears on the Tools page).
 intro: Small public tools on macro policy and the profession.
 
 tools:
@@ -17,11 +18,13 @@ tools:
   - title: Macro Conferences
     description: Upcoming calls for papers in macro, household finance & pensions.
     url: /macro-conferences/
+    hero: false
     image: /images/thumbs/macro-conferences.jpg
     source: https://github.com/patrickmschneider/macro-conferences
   - title: Political Weather
     description: A weather-map view of the 2026 U.S. midterm swing.
     url: /political-weather/
+    hero: false
     image: /images/thumbs/political-weather.jpg
     source: https://github.com/patrickmschneider/political-weather
   - title: Growth Accounting

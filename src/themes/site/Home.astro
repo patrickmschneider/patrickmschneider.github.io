@@ -19,18 +19,19 @@ const small = `/images/${photo}-860.jpg?v=${v(`${photo}-860.jpg`)}`;
 const mid = `/images/${photo}-1000.jpg?v=${v(`${photo}-1000.jpg`)}`;
 
 const featured = papers.filter((p) => p.featured);
+const heroTools = liveTools.filter((t) => t.hero);
 ---
 
 <section class="band">
   <div class="wrap wide band-inner">
     <Intro>
-      {liveTools.length > 0 && (
+      {heroTools.length > 0 && (
         <p class="tools-line">
           I also build small public tools:{' '}
-          {liveTools.map((t, i) => (
+          {heroTools.map((t, i) => (
             <>
               <a href={t.url}>{t.title}</a>
-              {i < liveTools.length - 2 ? ', ' : i === liveTools.length - 2 ? (liveTools.length > 2 ? ', and ' : ' and ') : '.'}
+              {i < heroTools.length - 2 ? ', ' : i === heroTools.length - 2 ? (heroTools.length > 2 ? ', and ' : ' and ') : '.'}
             </>
           ))}
         </p>
