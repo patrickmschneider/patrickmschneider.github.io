@@ -44,7 +44,7 @@
   --photo-w: 28rem;      /* sized so the eyes line up with the first line of the description */
   --photo-top: 1rem;     /* gap between the blue bar and the top of the photo */
   --hair-line: 0.10;     /* top of the hair sits at 10% of the photo's height */
-  --hair-above: 0.75rem; /* hair starts this far above the top of the name */
+  --hair-above: 0.5rem;  /* hair starts this far above the top of the name (tuned so the irises sit on the middle of the first text line) */
   --tile: #f1efea;
 }
 
