@@ -16,7 +16,7 @@
   --imperial-blue: #0000cd;
   /* Hero fade: light behind the text (left) to the photo's own studio grey (right). */
   --band-light: #eeeeef;
-  --band-photo: #babbbe; /* sampled from the (brightened) headshot backdrop */
+  --band-photo: #afb0b5; /* sampled from the headshot backdrop (sRGB) */
 
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
@@ -58,7 +58,7 @@
     --chip-text: #d6d4cf;
     --card: #1a1b1e;
     --band-light: #1a1b1e;
-    --band-photo: #919294; /* the photo's grey (#babbbe) after the brightness(.78) filter below */
+    --band-photo: #88898d; /* the photo's grey (#afb0b5) after the brightness(.78) filter below */
     --badge-quiet: #2a2c30;
   }
   .band-photo { filter: brightness(0.78); }
