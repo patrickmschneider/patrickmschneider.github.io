@@ -53,6 +53,7 @@ const isCurrent = (href: string) => path.startsWith(href);
   </head>
   <body class:list={{ 'is-home': isHome }}>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="brand-rule" aria-hidden="true"></div>
     <header class="site-header">
       <div class="site-header-bar">
       <div class="wrap">
@@ -91,6 +92,14 @@ const isCurrent = (href: string) => path.startsWith(href);
     </footer>
 
     <script>
+      // Sticky header: switch to a compact state once the page has scrolled (like Fiscal Space).
+      const header = document.querySelector('.site-header');
+      if (header) {
+        const onScroll = () => header.classList.toggle('compact', window.scrollY > 12);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+
       // Abstract toggles: a button in the link row shows/hides the abstract below it.
       document.querySelectorAll<HTMLButtonElement>('.abstract-toggle').forEach((btn) => {
         btn.addEventListener('click', () => {
