@@ -25,7 +25,7 @@
   }
 
   var CSS = [
-    ':host{display:block;all:initial;display:block;font-family:"PS Plex Sans","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;',
+    ':host{all:initial;display:block;flex:none;position:relative;z-index:1000;font-family:"PS Plex Sans","IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;',
     '--bg:#faf9f6;--text:#1f2328;--soft:#2d3138;--rule:#e7e4dd;--blue:#0000cd;--hover:#0000cd}',
     '@media (prefers-color-scheme: dark){:host{--bg:#121315;--text:#e8e7e4;--soft:#cfcdc8;--rule:#2a2b2f;--hover:#9aa6ff}}',
     'header{background:var(--bg);border-top:3px solid var(--blue);border-bottom:1px solid var(--rule)}',
