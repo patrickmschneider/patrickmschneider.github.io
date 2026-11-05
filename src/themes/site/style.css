@@ -14,7 +14,7 @@
 :root {
   --imperial-blue: #0000cd;
   /* Hero fade: light behind the text (left) to the photo's own studio grey (right). */
-  --band-light: #f5f4f0; /* warm, close to the page background */
+  --band-light: var(--bg); /* the light end of the fade is exactly the page colour */
   --band-photo: #afb0b5; /* sampled from the headshot backdrop (sRGB) */
 
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
@@ -61,7 +61,7 @@
     --chip-border: #3a3c40;
     --chip-text: #d6d4cf;
     --card: #1a1b1e;
-    --band-light: #1a1b1e;
+    --band-light: var(--bg);
     --badge-quiet: #2a2c30;
     --label: #a3a6ac;
   }

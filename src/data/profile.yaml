@@ -27,5 +27,5 @@ links:
   - { label: Email, url: "mailto:p.schneider@imperial.ac.uk", primary: true }
   - { label: Google Scholar, url: "https://scholar.google.com/citations?user=OJ5ewzQAAAAJ&hl=en" }
   - { label: LinkedIn, url: "https://www.linkedin.com/in/patrickmschneider/" }
-  - { label: X, url: "https://x.com/patricksecon" }
+  - { label: Twitter, url: "https://x.com/patricksecon" }
   - { label: Bluesky, url: "https://bsky.app/profile/patricksecon.bsky.social" }
