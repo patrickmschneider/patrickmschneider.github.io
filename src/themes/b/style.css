@@ -13,7 +13,7 @@
 
 :root {
   --imperial-blue: #0000cd;
-  --photo-grey: #aeafb4; /* sampled from the headshot backdrop */
+  --photo-grey: #e3e3e6; /* the headshot backdrop, lightened (original studio grey was #aeafb4) */
 
   --font-body: 'IBM Plex Sans', system-ui, sans-serif;
   --font-display: 'IBM Plex Sans', system-ui, sans-serif;
