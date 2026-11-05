@@ -1,6 +1,7 @@
 /* Site design: IBM Plex Sans throughout (tabular figures for years and dates).
-   Imperial branding is light-touch: the Imperial Business School logo in Imperial Blue (#0000cd)
-   and a thin Imperial Blue rule along the top of the header. No other colour.
+   Imperial branding is light-touch: the Imperial Business School logo in Imperial Blue (#0000cd),
+   a thin Imperial Blue rule along the top of the header, short blue ticks on section labels, and
+   Imperial Blue as the hover colour for links. No other colour.
    Everything else is neutral and airy: warm off-white, near-black text, soft rounded tiles and pills.
    The hero fades horizontally from light (text) into the photo's own studio grey (photo). */
 @import '@fontsource/ibm-plex-sans/300.css';
@@ -197,6 +198,44 @@ body:not(.is-home) main { padding-top: 3.5rem; }
   .paper-thumb { display: none; }
   .paper-body { grid-column: 1; }
   .paper-year { grid-column: 2; }
+}
+
+/* Accent: Imperial Blue as a single, interaction-only accent.
+   At rest nothing changes; links and titles turn Imperial Blue on hover, and section
+   labels get a short blue tick echoing the rule along the top of the header. */
+:root { --link-hover: var(--imperial-blue); }
+@media (prefers-color-scheme: dark) { :root { --link-hover: #9aa6ff; } }
+
+/* hover: text links, titles, menu, footer */
+a:hover,
+.site-header nav a:hover,
+.paper-title a:hover,
+.paper-link:hover,
+.jump a:hover,
+.more a:hover,
+.tagline a:hover,
+.tools-line a:hover,
+.site-footer a:hover,
+.feature-card:hover .feature-title a,
+.feature-card:hover .feature-cta { color: var(--link-hover); text-decoration-color: currentColor; }
+
+/* card hover: hairline border picks up the accent too */
+.feature-card:hover .feature-figure { border-color: color-mix(in srgb, var(--link-hover) 45%, transparent); }
+
+/* buttons: outline button gets the accent on hover; solid stays neutral */
+.btn-outline:hover { color: var(--link-hover); border-color: var(--link-hover); background: transparent; }
+
+/* section labels: short Imperial Blue tick */
+.label::before {
+  content: '';
+  display: inline-block;
+  width: 1rem;
+  height: 2px;
+  margin-right: 0.6rem;
+  vertical-align: middle;
+  background: var(--imperial-blue);
+  position: relative;
+  top: -1px;
 }
 
 /* Dark mode element overrides (kept last so they win over the light rules above) */
