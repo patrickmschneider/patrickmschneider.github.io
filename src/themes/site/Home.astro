@@ -1,20 +1,22 @@
 ---
-// Direction B, "Figure-led": full-width hero band holding the whole intro (name, statement, bio, links)
-// with a large photo blended into the band, then figure cards for papers and tools, then news.
+// Home page: hero (intro + photo blended into its backdrop), three featured papers,
+// one sentence pointing to the tools, and news only when there is real news.
 import Intro from '../../components/Intro.astro';
 import FeatureCard from '../../components/FeatureCard.astro';
 import { profile, papers, news, liveTools, inlineMd, paperStatus } from '../../lib/data';
+import { page } from '../../lib/url';
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 
 // Which headshot to show (files in public/images: <photo>.jpg and <photo>-860.jpg).
 interface Props { photo?: string }
 const { photo = 'headshot' } = Astro.props;
 // Content hash in the URL so browsers fetch the new photo whenever the file changes.
-import { createHash } from 'node:crypto';
-import { readFileSync } from 'node:fs';
 const v = (file: string) =>
   createHash('md5').update(readFileSync(`public/images/${file}`)).digest('hex').slice(0, 8);
 const big = `/images/${photo}.jpg?v=${v(`${photo}.jpg`)}`;
 const small = `/images/${photo}-860.jpg?v=${v(`${photo}-860.jpg`)}`;
+
 const featured = papers.filter((p) => p.featured);
 ---
 
@@ -25,7 +27,7 @@ const featured = papers.filter((p) => p.featured);
       class="band-photo"
       src={big}
       srcset={`${small} 860w, ${big} 1600w`}
-      sizes="(max-width: 52rem) 17rem, 26rem"
+      sizes="(max-width: 52rem) 15rem, 26rem"
       alt={`Photo of ${profile.name}`}
       width="1600"
       height="1600"
@@ -38,19 +40,28 @@ const featured = papers.filter((p) => p.featured);
   <h2 class="label">Research</h2>
   <ul class="feature-grid">
     {featured.map((p) => (
-      <FeatureCard href={p.url ?? '#'} title={p.title} image={p.image} badge={paperStatus(p)} journal={p.journal} date={p.journal ? undefined : p.year?.toString()} text={p.teaser} />
+      <FeatureCard href={p.url ?? page('/research/')} title={p.title} image={p.image} badge={paperStatus(p)} text={p.teaser} />
     ))}
   </ul>
-  <h2 class="label">Tools</h2>
-  <ul class="feature-grid">
-    {liveTools.map((t) => (
-      <FeatureCard href={t.url!} title={t.title} image={t.image} date={t.updated && `Updated ${t.updated}`} text={t.description} />
-    ))}
-  </ul>
+  <p class="more"><a href={page('/research/')}>All research →</a></p>
 </section>
 
+{liveTools.length > 0 && (
+  <section class="wrap wide block tools-line">
+    <p>
+      I also build small public tools:{' '}
+      {liveTools.map((t, i) => (
+        <>
+          <a href={t.url}>{t.title}</a>
+          {i < liveTools.length - 2 ? ', ' : i === liveTools.length - 2 ? (liveTools.length > 2 ? ', and ' : ' and ') : '.'}
+        </>
+      ))}
+    </p>
+  </section>
+)}
+
 {news.length > 0 && (
-  <section class="wrap wide block news-block">
+  <section class="wrap wide block">
     <h2 class="label">News</h2>
     <ol class="news">
       {news.map((n) => (

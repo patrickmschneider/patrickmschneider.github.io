@@ -4,8 +4,10 @@ import { profile, inlineMd } from '../lib/data';
 
 interface Props {
   showBio?: boolean;
+  /** Show the non-button links (Scholar, LinkedIn, …) next to the buttons */
+  showSocial?: boolean;
 }
-const { showBio = true } = Astro.props;
+const { showBio = true, showSocial = false } = Astro.props;
 const primary = profile.links.filter((l) => l.primary);
 const secondary = profile.links.filter((l) => !l.primary);
 ---
@@ -22,8 +24,10 @@ const secondary = profile.links.filter((l) => !l.primary);
     {primary.map((l, i) => (
       <a class:list={['btn', i === 0 ? 'btn-solid' : 'btn-outline']} href={l.url}>{l.label}</a>
     ))}
-    <ul class="social">
-      {secondary.map((l) => <li><a href={l.url}>{l.label}</a></li>)}
-    </ul>
+    {showSocial && (
+      <ul class="social">
+        {secondary.map((l) => <li><a href={l.url}>{l.label}</a></li>)}
+      </ul>
+    )}
   </div>
 </div>
