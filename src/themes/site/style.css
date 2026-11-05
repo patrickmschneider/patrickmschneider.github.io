@@ -41,9 +41,9 @@
   --measure: 46rem;
   --wide: 70rem;
   --radius: 4px;
-  --photo-w: min(36rem, 46vw);
-  --photo-top: 1.5rem;   /* gap between the blue bar and the top of the photo */
-  --eye-line: 0.39;      /* eyes sit at 39% of the photo's height */
+  --photo-w: clamp(27rem, 30vw, 29rem); /* chest ends ~4–6rem below the buttons */
+  --photo-top: 1rem;     /* gap between the blue bar and the top of the photo */
+  --hair-line: 0.10;     /* top of the hair sits at 10% of the photo's height */
   --tile: #f1efea;
 }
 
@@ -129,19 +129,19 @@ main { padding-top: 0; }
   background: linear-gradient(90deg, var(--band-light) 0%, var(--band-light) 50%, var(--band-photo) 80%, var(--band-photo) 100%);
   overflow: hidden;
 }
-.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 2.5rem; align-items: end; }
-/* The name is placed level with the eyes in the photo: photo top + 39% of its height,
-   minus half the name's cap height. The text then runs down to roughly where the chest ends. */
+.band-inner { display: grid; grid-template-columns: minmax(0, 1fr) var(--photo-w); gap: 3rem; align-items: start; }
+/* The top of the name's capitals lines up with the top of the hair (photo top + 10% of its height);
+   0.25em removes the space above the capitals in the name's line box. The chest ends ~4rem below the buttons. */
 .band .intro-text {
-  align-self: start;
-  padding-top: calc(var(--photo-top) + var(--photo-w) * var(--eye-line) - 0.62 * clamp(2.5rem, 5.5vw, 3.4rem));
-  padding-bottom: 1.25rem;
+  padding-top: calc(var(--photo-top) + var(--photo-w) * var(--hair-line) - 0.25 * clamp(2.5rem, 5.5vw, 3.4rem));
+  padding-bottom: 4rem;
   max-width: 36rem;
 }
 .band-photo {
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+  align-self: end;
   margin-top: var(--photo-top);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
   mask-image: linear-gradient(to right, transparent 0%, #000 22%, #000 82%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 14%);
