@@ -1,0 +1,167 @@
+/*
+ * Editorial preview
+ *
+ * The live theme remains the foundation. This version adds a little more graphic
+ * definition without changing the content hierarchy or giving any one paper more prominence.
+ */
+@import '../site/style.css';
+
+:root {
+  --editorial-rule: color-mix(in srgb, var(--imperial-blue) 16%, var(--rule));
+}
+
+/* Keep the airy Plex voice; hierarchy comes from scale and deliberately light weights. */
+.page-title,
+.paper-title,
+.feature-title {
+  font-family: var(--font-display);
+}
+
+.page-title {
+  font-size: clamp(2.45rem, 4.6vw, 3.2rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  margin-bottom: 2.75rem;
+}
+
+.feature-title {
+  font-size: 1.12rem;
+  font-weight: 500;
+  line-height: 1.28;
+  letter-spacing: -0.008em;
+}
+
+.paper-title {
+  font-size: 1.16rem;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+/* Crisper, less card-like figure frames with an equal blue registration mark on each. */
+.feature-figure {
+  position: relative;
+  border-radius: 3px;
+  border-color: var(--editorial-rule);
+  overflow: hidden;
+}
+
+.feature-figure::after {
+  content: '';
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 2.4rem;
+  height: 3px;
+  background: var(--imperial-blue);
+  pointer-events: none;
+}
+
+.paper-thumb {
+  border-radius: 3px;
+  border-color: var(--editorial-rule);
+}
+
+/* Status is publication metadata, not an app badge. */
+.feature-kicker {
+  min-height: 1.25rem;
+  gap: 0.4rem 0.65rem;
+  margin-bottom: 0.65rem;
+}
+
+.badge,
+.badge-working,
+.badge-forthcoming,
+.badge-published {
+  position: relative;
+  padding: 0 0 0 0.85rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.075em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.badge::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.47em;
+  width: 0.52rem;
+  height: 2px;
+  background: var(--imperial-blue);
+}
+
+.feature-journal {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+}
+
+/* Give expanded arguments a visible but quiet editorial annotation rule. */
+.paper-abstract {
+  border-left-color: color-mix(in srgb, var(--imperial-blue) 40%, var(--rule));
+}
+
+/* The teaching list becomes a restrained timeline rather than an unadorned table. */
+.course-list {
+  position: relative;
+  margin-left: 0.3rem;
+  padding-left: 1.45rem;
+  border-left: 1px solid var(--editorial-rule);
+}
+
+.course {
+  position: relative;
+}
+
+.course::before {
+  content: '';
+  position: absolute;
+  left: -1.78rem;
+  top: 1.18rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 2px solid var(--imperial-blue);
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+/* Keep visual research cues on tablets; very narrow phones retain the clean text list. */
+@media (min-width: 34rem) and (max-width: 48rem) {
+  .paper {
+    grid-template-columns: 6.25rem minmax(0, 1fr) auto;
+    column-gap: 1.25rem;
+  }
+
+  .paper-thumb {
+    display: block;
+    grid-column: 1;
+  }
+
+  .paper-body { grid-column: 2; }
+  .paper-year { grid-column: 3; }
+}
+
+@media (max-width: 34rem) {
+  .page-title { font-size: 2.45rem; }
+  .feature-title { font-size: 1.1rem; }
+  .paper-title { font-size: 1.14rem; }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --editorial-rule: color-mix(in srgb, var(--link-hover) 24%, var(--rule));
+  }
+
+  .badge,
+  .badge-working,
+  .badge-forthcoming,
+  .badge-published {
+    background: transparent;
+    color: var(--muted);
+  }
+}

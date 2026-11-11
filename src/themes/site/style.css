@@ -126,7 +126,13 @@ html { scroll-padding-top: 4.5rem; } /* anchor links (e.g. Research jump links) 
 .site-header nav a { color: var(--text-soft); font-size: 0.9375rem; font-weight: 500; padding-block: 0.375rem; }
 .site-header nav a:hover { color: var(--text); }
 .site-header nav a[aria-current='page'] { color: var(--text); border-bottom-color: var(--imperial-blue); }
-@media (max-width: 34rem) { .org-logo img { height: 1.45rem; } .site-header .wrap { row-gap: 0.4rem; } .site-header nav { gap: 1.25rem; } }
+@media (max-width: 34rem) {
+  html { scroll-padding-top: 0; }
+  .site-header { position: static; top: auto; }
+  .org-logo img { height: 1.45rem; }
+  .site-header .wrap { row-gap: 0.4rem; }
+  .site-header nav { gap: 1.25rem; }
+}
 
 /* Hero: horizontal fade into the photo's backdrop grey; the photo's edges fade so it has no visible border. */
 main { padding-top: 0; }

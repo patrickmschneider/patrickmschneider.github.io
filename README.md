@@ -15,7 +15,10 @@ All content lives in four YAML files in `src/data/`. You rarely need to touch an
 | `tools.yaml` | Tools page |
 
 PDFs (CV, papers, appendices, slides) go in `public/files/`. A file at `public/files/cv.pdf` is served at
-`patrickmschneider.com/files/cv.pdf`. **To update your CV, overwrite `public/files/cv.pdf` and push.**
+`patrickmschneider.com/files/cv.pdf`. The CV source lives in `cv/`; `npm run build:cv` compiles
+`cv/cv.tex` and updates `public/files/cv.pdf`. Shared CV content is generated from the same data as
+the website: edit `profile.yaml` for the current position and `papers.yaml` for research. The deploy
+workflow rebuilds the PDF automatically on every push.
 
 ### Adding a paper
 

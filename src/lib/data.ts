@@ -12,8 +12,10 @@ const profileSchema = z
   .object({
     name: z.string(),
     position: z.string(),
+    position_start: z.number(),
     affiliation: z.string(),
     affiliation_url: z.string().optional(),
+    department: z.string(),
     address: z.string().optional(),
     photo: z.string(),
     description: z.string(),

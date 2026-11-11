@@ -1,9 +1,11 @@
 # Basic info shown on the home page, header, footer and link previews.
 name: Patrick Schneider
 position: Assistant Professor of Economics
+position_start: 2025
 affiliation: Imperial Business School
 affiliation_url: https://www.imperial.ac.uk/business-school/
-address: Imperial Business School, South Kensington Campus, London SW7 2AZ
+department: Department of Economics & Public Policy
+address: London
 
 photo: /images/headshot.jpg
 

@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+
+\usepackage{fancyhdr,ltablex,setspace}
+\usepackage[british]{babel}
+\usepackage[colorlinks=true, linkcolor=black, urlcolor=black]{hyperref}
+
+% Generated from src/data/profile.yaml. Do not edit the generated file.
+\input{generated/profile.tex}
+% Generated from src/data/papers.yaml. Do not edit the generated file.
+\input{generated/research.tex}
+
+% High level personal and contact information
+\fancypagestyle{fancyfirst}{
+  \fancyhf{}
+  \fancyhead[L]{{\LARGE\textbf{\CVName}} \\[10pt] \CVDepartment \\ \CVAffiliation \\ \CVAddress}
+  \fancyhead[R]{\href{mailto:\CVEmail}{\CVEmail} \\ \href{https://www.patrickmschneider.com}{www.patrickmschneider.com} \\ \today}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\newcommand{\xxxxx}{\\[20pt]}
+
+\begin{document}
+
+\onehalfspacing
+
+\thispagestyle{fancyfirst} \vspace*{30pt}
+
+\begin{tabularx}{\textwidth}{@{}l>{\hspace{1em}}lX@{}}
+
+\multicolumn{3}{l}{\textbf{Current Position}} \\ \hline
+& \CVPositionStart-- & \CVPosition \newline\textit{\CVAffiliation, \CVDepartment} \xxxxx
+
+\multicolumn{3}{l}{\textbf{Education}} \\ \hline
+& 2021--2025 & PhD in Economics \textit{London School of Economics} \newline Supervisor: Ricardo Reis \\
+& 2019--2021 & MRes in Economics \textit{London School of Economics} \\
+& 2013--2015 & MPhil in Economics \textit{Oxford University} \\
+& 2006--2012 & Bachelor of Economics (first class Hons) \textit{UNSW Sydney} \\
+& 2006--2012 & Bachelor of Arts \textit{UNSW Sydney} \xxxxx
+
+% Publications, working papers, and earlier work are generated from
+% src/data/papers.yaml. Do not maintain a second paper list here.
+\CVResearch
+
+\multicolumn{3}{l}{\textbf{Teaching Experience}} \\ \hline
+& Imperial & UG Advanced Macroeconomics (Lead 2026--) \newline
+            MBA Macroeconomics (Lead 2026--) \xxxxx
+& LSE &   EC1P1 Economics (TA 2021--23) \newline 
+        PP404 Economics for Public Policy (TA 2022--24) \newline
+        PP440E Economic Policy Analysis (TA 2021--23) \newline 
+        EC102 Introductory Economics (TA 2020-21) \xxxxx
+
+\multicolumn{3}{l}{\textbf{Awards}} \\ \hline
+& 2024 & LSE Class Teacher Award \\
+& 2019 & LSE Department of Economics PhD Studentship \\
+& 2012 & UNSW Faculty of Arts and Social Sciences Dean’s List \\
+& 2011 & UNSW Australian School of Business Honours Scholarship \\
+& 2010 & UNSW International Exchange Scholarship \xxxxx
+
+\multicolumn{3}{l}{\textbf{Other Experience}} \\ \hline
+& 2023 & Macro Research Intern \textit{Eisler Capital} \\
+& 2020--21 & Research Assistant \textit{Centre for Economic Performance} \\
+& 2015--18 & Economist \textit{Bank of England} \\
+& 2014 & Research Assistant \textit{Centre for the Study of African Economies} \\
+& 2013--14 & Research Assistant \textit{Oxford Policy Management} \\
+& 2013 & Research Assistant \textit{UNSW Sydney} \\
+& 2012--13 & Management Consultant \textit{Nous Group}\xxxxx
+
+\end{tabularx}
+    
+\end{document}
