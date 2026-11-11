@@ -46,6 +46,7 @@ const paperSchema = z
     venue: z.string().optional(),
     note: z.string().optional(),
     links: z.array(link).default([]),
+    coverage: z.array(link).default([]),
     abstract: z.string().optional(),
     featured: z.boolean().default(false),
   })

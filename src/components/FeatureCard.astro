@@ -11,6 +11,8 @@ interface Props {
   /** A date or year, shown in monospace (e.g. "2026" or "Updated Nov 2026") */
   date?: string;
   text?: string;
+  /** Press coverage, kept separate from the primary paper link */
+  coverage?: { label: string; url: string }[];
   /** Optional link to the source code */
   source?: string;
   /** Description of the image for screen readers */
@@ -18,7 +20,7 @@ interface Props {
   /** Optional call-to-action text shown under the description, e.g. "Open tool" */
   cta?: string;
 }
-const { href, title, image, badge, journal, date, text, source, alt = '', cta } = Astro.props;
+const { href, title, image, badge, journal, date, text, coverage = [], source, alt = '', cta } = Astro.props;
 ---
 
 <li class="feature-card">
@@ -34,6 +36,12 @@ const { href, title, image, badge, journal, date, text, source, alt = '', cta } 
   )}
   <h3 class="feature-title"><a class="stretched" href={href}>{title}</a></h3>
   {text && <p class="feature-text">{text}</p>}
+  {coverage.length > 0 && (
+    <p class="feature-coverage">
+      <span class="coverage-label">Coverage</span>
+      {coverage.map((item) => <a href={item.url}>{item.label}</a>)}
+    </p>
+  )}
   {(cta || source) && (
     <p class="feature-actions">
       {cta && <span class="feature-cta" aria-hidden="true">{cta} →</span>}

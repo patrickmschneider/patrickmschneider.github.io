@@ -51,6 +51,13 @@ const hasExtras = paper.links.length > 0 || !!paper.abstract;
       </p>
     )}
 
+    {paper.coverage.length > 0 && (
+      <p class="paper-coverage">
+        <span class="coverage-label">Coverage</span>
+        {paper.coverage.map((item) => <a href={item.url}>{item.label}</a>)}
+      </p>
+    )}
+
     {paper.abstract && (
       <p class="paper-abstract" id={`${id}-abstract`} hidden>{paper.abstract}</p>
     )}

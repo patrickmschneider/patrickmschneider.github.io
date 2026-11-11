@@ -10,6 +10,7 @@
 # venue:    journal / series line, shown under the title
 # note:     short status note, e.g. "forthcoming at …"
 # links:    extra buttons (appendix, slides, code, blog, …)
+# coverage: press coverage links, shown separately from paper files and supporting material
 # abstract: optional; shown in a collapsible box
 # featured: true puts the paper on the home page ("Selected research")
 # image:    figure thumbnail (Research page, and home-page card if featured; files in public/images/thumbs/)
@@ -27,6 +28,8 @@
     - { name: Peter Lambert, url: "https://peterjohnlambert.com" }
   links:
     - { label: Website, url: https://whopaysfor.ai/ }
+  coverage:
+    - { label: Bloomberg, url: "https://www.bloomberg.com/news/articles/2026-11-05/claude-lowers-chatgpt-s-lead-in-1-billion-uk-consumer-ai-market" }
   abstract: >-
     We document who pays for AI tools using a panel of millions of open banking and cardholder
     accounts from 2022 to mid-2026, covering billions of transactions. We find that subscriptions to
