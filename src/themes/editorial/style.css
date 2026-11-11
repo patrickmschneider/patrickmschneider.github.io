@@ -39,22 +39,12 @@
   letter-spacing: -0.01em;
 }
 
-/* Crisper, less card-like figure frames with an equal blue registration mark on each. */
+/* Crisper, less card-like figure frames. */
 .feature-figure {
   position: relative;
   border-radius: 3px;
   border-color: var(--editorial-rule);
   overflow: hidden;
-}
-
-.feature-figure::after {
-  content: '';
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 2.4rem;
-  height: 3px;
-  background: var(--imperial-blue);
-  pointer-events: none;
 }
 
 .paper-thumb {
