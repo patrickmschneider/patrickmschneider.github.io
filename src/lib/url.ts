@@ -6,6 +6,6 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 export const page = (path: string) => base + path;
 
-/** Which design is being built: '' for the live site, or e.g. 'a' / 'b' for previews. */
+/** Which design is being built, including the live theme. */
 export const theme: string = import.meta.env.THEME ?? '';
 export const isPreview = base !== '';

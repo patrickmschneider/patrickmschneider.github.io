@@ -4,18 +4,19 @@ import { fileURLToPath } from 'node:url';
 
 // Design previews: `THEME=a npm run build` builds the site under /preview-a/ into dist/preview-a.
 // The deploy workflow builds the live site and each preview, then merges them.
-const theme = process.env.THEME ?? '';
-const preview = theme !== '';
+const requestedTheme = process.env.THEME ?? '';
+const preview = requestedTheme !== '';
+const theme = requestedTheme || 'editorial';
 
 export default defineConfig({
   // Canonical address used for link previews and search engines.
   site: 'https://www.patrickmschneider.com',
-  base: preview ? `/preview-${theme}` : '/',
-  outDir: preview ? `dist/preview-${theme}` : 'dist',
+  base: preview ? `/preview-${requestedTheme}` : '/',
+  outDir: preview ? `dist/preview-${requestedTheme}` : 'dist',
   trailingSlash: 'ignore',
   vite: {
     define: { 'import.meta.env.THEME': JSON.stringify(theme) },
-    // `@theme/…` points at the folder for the design being built (src/themes/site for the live site).
+    // `@theme/…` points at the live design, or at a requested preview theme.
     resolve: { alias: { '@theme': fileURLToPath(new URL(`./src/themes/${theme || 'site'}`, import.meta.url)) } },
   },
 
